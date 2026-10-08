@@ -17,8 +17,14 @@ deployment has not yet been validated. Test on a staging account before deployme
 - Masked email: create, enable/disable and delete on Stalwart Enterprise.
 
 Features are independently configurable and disabled by default. The plugin uses
-native settings pages and English/Romanian translations. No core, skin, built-in
+native settings pages and multilingual catalogs with native English fallback.
+No core, skin, built-in
 Password plugin or database patches are needed.
+
+The 80 complete language catalogs cover Roundcube 1.6/1.7 through native fallbacks.
+New translations are machine-generated; native-speaker corrections are welcome.
+Dari uses the Persian fallback. Asturian, Interlingua, Kabyle, Norwegian Nynorsk
+and Talossan currently use English.
 
 ## Compatibility
 
@@ -67,7 +73,7 @@ Stalwart's internal directory, not credentials managed by external directories.
 From the **Roundcube root**, where its `composer.json` is located:
 
 ```sh
-composer require "evopixel/stalwart:1.0.0"
+composer require "evopixel/stalwart:1.0.2"
 ```
 
 The package and its dependencies are available on Packagist. No extra
@@ -271,7 +277,7 @@ accounts. Live Stalwart validation remains necessary for production claims.
 
 Follow existing four-space PHP formatting and native hooks, actions, HTML helpers,
 translations and the `plugin` template. Keep feature-specific helpers separate
-and avoid core/skin patches. Update both languages together, preserve CSRF and
+and avoid core/skin patches. Update the complete language catalogs together, preserve CSRF and
 ownership checks, and add regression checks for security-sensitive changes.
 See the [Roundcube Plugin API](https://github.com/roundcube/roundcubemail/wiki/Plugin-API).
 
