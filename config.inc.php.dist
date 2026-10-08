@@ -1,0 +1,20 @@
+<?php
+
+// Configure config.inc.php in this directory; Composer normally creates it for you.
+// Local plugin settings override Roundcube's main configuration. See README.md.
+// Nothing is enabled by installing the plugin alone.
+$config['stalwart_enabled'] = false;
+$config['stalwart_api_url'] = '';
+
+// Independently enable each native settings page.
+$config['stalwart_twofactor_enabled'] = false;
+$config['stalwart_app_passwords_enabled'] = false;
+// Requires existing account-administration permissions. See README.md.
+$config['stalwart_aliases_enabled'] = false;
+$config['stalwart_public_keys_enabled'] = false;
+// Requires Stalwart Enterprise and the user's MaskedEmail permissions.
+$config['stalwart_masked_email_enabled'] = false;
+
+// Optional: select our account-password page instead of another password provider.
+// The bundled Password plugin is loaded automatically; no driver installation is needed.
+// $config['password_driver'] = 'stalwart';
