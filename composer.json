@@ -1,0 +1,38 @@
+{
+    "name": "evopixel/stalwart",
+    "type": "roundcube-plugin",
+    "description": "Stalwart account management for Roundcube",
+    "license": "GPL-3.0-or-later",
+    "homepage": "https://github.com/evopixelro/roundcube-stalwart",
+    "authors": [
+        {
+            "name": "EvoPixel",
+            "homepage": "https://evopixel.ro"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/evopixelro/roundcube-stalwart/issues",
+        "source": "https://github.com/evopixelro/roundcube-stalwart",
+        "docs": "https://github.com/evopixelro/roundcube-stalwart#readme"
+    },
+    "require": {
+        "php": ">=7.4.0",
+        "ext-json": "*",
+        "ext-openssl": "*",
+        "ext-xmlwriter": "*",
+        "roundcube/plugin-installer": "~0.3.1",
+        "guzzlehttp/guzzle": "^7.3.0",
+        "bacon/bacon-qr-code": "^2.0.0 || ^3.0.0"
+    },
+    "extra": {
+        "roundcube": {
+            "min-version": "1.6.0"
+        }
+    },
+    "scripts": {
+        "test": [
+            "@php tests/client.php",
+            "@php tests/lifecycle.php"
+        ]
+    }
+}

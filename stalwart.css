@@ -1,0 +1,111 @@
+/* Account security content uses the active Roundcube skin's form styles. */
+#settings-menu li.twofactor-management > a:before,
+#settings-menu li.stalwart-public-keys > a:before,
+#settings-menu li.stalwart-masked-email > a:before,
+#settings-menu li.stalwart-app-passwords > a:before,
+#settings-menu li.stalwart-aliases > a:before {
+    content: "";
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    margin-top: .15em;
+    background-color: currentColor;
+    -webkit-mask: var(--stalwart-icon) center / contain no-repeat;
+    mask: var(--stalwart-icon) center / contain no-repeat;
+}
+#settings-menu li.twofactor-management > a {
+    --stalwart-icon: url(images/shield.svg);
+}
+#settings-menu li.stalwart-app-passwords > a {
+    --stalwart-icon: url(images/key.svg);
+}
+#settings-menu li.stalwart-aliases > a {
+    --stalwart-icon: url(images/at.svg);
+}
+.stalwart-enrollment {
+    margin: 1.5rem 0;
+    text-align: center;
+}
+#settings-menu li.stalwart-public-keys > a {
+    --stalwart-icon: url(images/lock.svg);
+}
+#settings-menu li.stalwart-masked-email > a {
+    --stalwart-icon: url(images/masked.svg);
+}
+.stalwart-address {
+    user-select: all;
+}
+.stalwart-pagination {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+.stalwart-entry-actions .stalwart-action-form {
+    display: flex;
+    gap: .5rem;
+    flex-wrap: wrap;
+}
+.stalwart-entry-actions .form-control {
+    width: 12rem;
+    max-width: 100%;
+}
+#stalwart-key {
+    max-width: 100%;
+    font-family: monospace;
+}
+.stalwart-enrollment img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto 1rem;
+    background: #fff;
+}
+.stalwart-secret {
+    display: inline-block;
+    max-width: 100%;
+    word-break: break-all;
+    user-select: all;
+}
+.stalwart-generated .stalwart-secret {
+    display: block;
+    margin-top: 1rem;
+}
+.stalwart-settings h2 {
+    margin-top: 2rem;
+    font-size: 1.1rem;
+}
+.stalwart-entry {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(128, 128, 128, .2);
+}
+.stalwart-entry-details {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+.stalwart-entry-details p {
+    margin-bottom: 0;
+}
+.stalwart-entry-actions,
+.stalwart-alias-address {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    flex-wrap: wrap;
+}
+.stalwart-alias-address input {
+    flex: 1 1 12rem;
+    min-width: 0;
+}
+.stalwart-action-form {
+    margin: 0;
+}
+@media (max-width: 480px) {
+    .stalwart-entry {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
