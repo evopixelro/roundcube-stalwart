@@ -1,0 +1,359 @@
+{
+    "roundcube": [
+        "1.6.19",
+        "1.7.4"
+    ],
+    "source": "https://github.com/roundcube/roundcubemail/blob/1.7.4/program/localization/index.inc",
+    "locales": {
+        "sq_AL": {
+            "name": "Albanian (Shqip)",
+            "status": "machine-translated"
+        },
+        "ar": {
+            "name": "Arabic (العربية)",
+            "status": "machine-translated"
+        },
+        "ar_SA": {
+            "name": "Arabic (Saudi Arabia)",
+            "status": "machine-translated"
+        },
+        "hy_AM": {
+            "name": "Armenian (Հայերեն)",
+            "status": "machine-translated"
+        },
+        "ast": {
+            "name": "Asturiana (Asturianu)",
+            "status": "english-fallback",
+            "fallback": "en_US"
+        },
+        "az_AZ": {
+            "name": "Azerbaijani (Azərbaycanca)",
+            "status": "machine-translated"
+        },
+        "eu_ES": {
+            "name": "Basque (Euskara)",
+            "status": "machine-translated"
+        },
+        "be_BE": {
+            "name": "Belarusian (беларуская мова)",
+            "status": "machine-translated"
+        },
+        "bn_BD": {
+            "name": "Bengali (বাংলা)",
+            "status": "machine-translated"
+        },
+        "bs_BA": {
+            "name": "Bosnian (Bosanski)",
+            "status": "machine-translated"
+        },
+        "br": {
+            "name": "Breton (Brezhoneg)",
+            "status": "machine-translated"
+        },
+        "bg_BG": {
+            "name": "Bulgarian (Български)",
+            "status": "machine-translated"
+        },
+        "ca_ES": {
+            "name": "Catalan (Català)",
+            "status": "machine-translated"
+        },
+        "zh_CN": {
+            "name": "Chinese (简体中文)",
+            "status": "machine-translated"
+        },
+        "zh_TW": {
+            "name": "Chinese (正體中文)",
+            "status": "machine-translated"
+        },
+        "hr_HR": {
+            "name": "Croatian (Hrvatski)",
+            "status": "machine-translated"
+        },
+        "cs_CZ": {
+            "name": "Czech (Česky)",
+            "status": "machine-translated"
+        },
+        "da_DK": {
+            "name": "Danish (Dansk)",
+            "status": "machine-translated"
+        },
+        "fa_AF": {
+            "name": "Dari (ﻯﺭﺩ)",
+            "status": "native-regional-fallback",
+            "fallback": "fa_IR"
+        },
+        "de_DE": {
+            "name": "German (Deutsch)",
+            "status": "machine-translated"
+        },
+        "de_CH": {
+            "name": "German (Schweiz)",
+            "status": "machine-translated"
+        },
+        "nl_NL": {
+            "name": "Dutch (Nederlands)",
+            "status": "machine-translated"
+        },
+        "en_CA": {
+            "name": "English (Canada)",
+            "status": "shared-english"
+        },
+        "en_GB": {
+            "name": "English (GB)",
+            "status": "shared-english"
+        },
+        "en_US": {
+            "name": "English (US)",
+            "status": "maintained"
+        },
+        "eo": {
+            "name": "Esperanto",
+            "status": "machine-translated"
+        },
+        "et_EE": {
+            "name": "Estonian (Eesti)",
+            "status": "machine-translated"
+        },
+        "fo_FO": {
+            "name": "Faroese (Føroyskt)",
+            "status": "machine-translated"
+        },
+        "fi_FI": {
+            "name": "Finnish (Suomi)",
+            "status": "machine-translated"
+        },
+        "nl_BE": {
+            "name": "Flemish (Vlaams)",
+            "status": "machine-translated"
+        },
+        "fr_FR": {
+            "name": "French (Français)",
+            "status": "machine-translated"
+        },
+        "gl_ES": {
+            "name": "Galician (Galego)",
+            "status": "machine-translated"
+        },
+        "ka_GE": {
+            "name": "Georgian (ქართული)",
+            "status": "machine-translated"
+        },
+        "el_GR": {
+            "name": "Greek (Ελληνικά)",
+            "status": "machine-translated"
+        },
+        "he_IL": {
+            "name": "Hebrew (עברית)",
+            "status": "machine-translated"
+        },
+        "hi_IN": {
+            "name": "Hindi (हिनदी)",
+            "status": "machine-translated"
+        },
+        "hu_HU": {
+            "name": "Hungarian (Magyar)",
+            "status": "machine-translated"
+        },
+        "is_IS": {
+            "name": "Icelandic (Íslenska)",
+            "status": "machine-translated"
+        },
+        "id_ID": {
+            "name": "Indonesian (Bahasa Indonesia)",
+            "status": "machine-translated"
+        },
+        "ia": {
+            "name": "Interlingua",
+            "status": "english-fallback",
+            "fallback": "en_US"
+        },
+        "ga_IE": {
+            "name": "Irish (Gaedhilge)",
+            "status": "machine-translated"
+        },
+        "it_IT": {
+            "name": "Italian (Italiano)",
+            "status": "machine-translated"
+        },
+        "ja_JP": {
+            "name": "Japanese (日本語)",
+            "status": "machine-translated"
+        },
+        "kab": {
+            "name": "Kabyle (Taqbaylit)",
+            "status": "english-fallback",
+            "fallback": "en_US"
+        },
+        "km_KH": {
+            "name": "Khmer (ភាសាខ្មែរ)",
+            "status": "machine-translated"
+        },
+        "kn_IN": {
+            "name": "Konkani (कोंकणी)",
+            "status": "machine-translated"
+        },
+        "ko_KR": {
+            "name": "Korean (한국어)",
+            "status": "machine-translated"
+        },
+        "ku": {
+            "name": "Kurdish (Kurmancî)",
+            "status": "machine-translated"
+        },
+        "lv_LV": {
+            "name": "Latvian (Latviešu)",
+            "status": "machine-translated"
+        },
+        "lt_LT": {
+            "name": "Lithuanian (Lietuviškai)",
+            "status": "machine-translated"
+        },
+        "lb_LU": {
+            "name": "Luxembourgish (Lëtzebuergesch)",
+            "status": "machine-translated"
+        },
+        "mk_MK": {
+            "name": "Macedonian (Македонски)",
+            "status": "machine-translated"
+        },
+        "ms_MY": {
+            "name": "Malay (Bahasa Melayu)",
+            "status": "machine-translated"
+        },
+        "ml_IN": {
+            "name": "Malayalam (മലയാളം)",
+            "status": "machine-translated"
+        },
+        "mr_IN": {
+            "name": "Marathi (मराठी)",
+            "status": "machine-translated"
+        },
+        "mn_MN": {
+            "name": "Mongolic (Монгол)",
+            "status": "machine-translated"
+        },
+        "ne_NP": {
+            "name": "Nepali (नेपाली)",
+            "status": "machine-translated"
+        },
+        "nb_NO": {
+            "name": "Norwegian (Bokmål)",
+            "status": "machine-translated"
+        },
+        "nn_NO": {
+            "name": "Norwegian (Nynorsk)",
+            "status": "english-fallback",
+            "fallback": "en_US"
+        },
+        "ps": {
+            "name": "Pashto",
+            "status": "machine-translated"
+        },
+        "fa_IR": {
+            "name": "Persian (فارسی)",
+            "status": "machine-translated"
+        },
+        "pl_PL": {
+            "name": "Polish (Polski)",
+            "status": "machine-translated"
+        },
+        "pt_BR": {
+            "name": "Portuguese (Brasil)",
+            "status": "machine-translated"
+        },
+        "pt_PT": {
+            "name": "Portuguese (Português)",
+            "status": "machine-translated"
+        },
+        "ro_RO": {
+            "name": "Romanian (Româneşte)",
+            "status": "maintained"
+        },
+        "ru_RU": {
+            "name": "Russian (Русский)",
+            "status": "machine-translated"
+        },
+        "sr_CS": {
+            "name": "Serbian (Српски)",
+            "status": "machine-translated"
+        },
+        "si_LK": {
+            "name": "Sinhalese (සිංහල)",
+            "status": "machine-translated"
+        },
+        "sk_SK": {
+            "name": "Slovak (Slovenčina)",
+            "status": "machine-translated"
+        },
+        "sl_SI": {
+            "name": "Slovenian (Slovenščina)",
+            "status": "machine-translated"
+        },
+        "es_AR": {
+            "name": "Spanish (Argentina)",
+            "status": "machine-translated"
+        },
+        "es_ES": {
+            "name": "Spanish (Español)",
+            "status": "machine-translated"
+        },
+        "es_419": {
+            "name": "Spanish (Latin America)",
+            "status": "machine-translated"
+        },
+        "sv_SE": {
+            "name": "Swedish (Svenska)",
+            "status": "machine-translated"
+        },
+        "ta_IN": {
+            "name": "Tamil (தமிழ்)",
+            "status": "machine-translated"
+        },
+        "ti": {
+            "name": "Tigrinya (ትግርኛ)",
+            "status": "machine-translated"
+        },
+        "th_TH": {
+            "name": "Thai (ไทย)",
+            "status": "machine-translated"
+        },
+        "tr_TR": {
+            "name": "Turkish (Türkçe)",
+            "status": "machine-translated"
+        },
+        "tzl": {
+            "name": "Talossan",
+            "status": "english-fallback",
+            "fallback": "en_US"
+        },
+        "ug": {
+            "name": "Uyghur (ئۇيغۇر)",
+            "status": "machine-translated"
+        },
+        "uk_UA": {
+            "name": "Ukrainian (Українська)",
+            "status": "machine-translated"
+        },
+        "ur_PK": {
+            "name": "Urdu (اُردو)",
+            "status": "machine-translated"
+        },
+        "uz": {
+            "name": "Uzbek (Oʻzbekcha)",
+            "status": "machine-translated"
+        },
+        "vi_VN": {
+            "name": "Vietnamese (Tiếng Việt)",
+            "status": "machine-translated"
+        },
+        "cy_GB": {
+            "name": "Welsh (Cymraeg)",
+            "status": "machine-translated"
+        },
+        "fy_NL": {
+            "name": "West Frisian (Frysk)",
+            "status": "machine-translated"
+        }
+    }
+}

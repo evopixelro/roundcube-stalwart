@@ -32,7 +32,8 @@
     "scripts": {
         "test": [
             "@php tests/client.php",
-            "@php tests/lifecycle.php"
+            "@php tests/lifecycle.php",
+            "@php tests/localization.php"
         ]
     }
 }

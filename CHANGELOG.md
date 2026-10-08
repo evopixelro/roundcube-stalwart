@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.2 — 2026-10-09
+
+- Add 78 Roundcube language catalogs with native regional and English fallbacks.
+- Add automated localization checks and concise translation documentation.
+
 ## 1.0.0 — 2026-10-08
 
 Initial release of `evopixel/stalwart`; development continues on `dev-main`.
