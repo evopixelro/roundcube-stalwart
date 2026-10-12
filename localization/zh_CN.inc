@@ -126,3 +126,9 @@ $messages['invalidprefix'] = '使用 1 至 64 个字母、数字或下划线，�
 $messages['invalidsitedomain'] = '输入站点域，例如 shop.example.com，不带 https:// 或路径。';
 $messages['maskedexpired'] = '过期地址无法重新激活。生成一个新的。';
 $messages['enterpriserequired'] = '此功能需要邮件服务器上的企业许可证。请联系您的管理员。';
+
+$labels['loginotphelp'] = '请输入身份验证应用中的六位验证码以完成登录。';
+$labels['loginverify'] = '验证并登录';
+$messages['loginconfigurationerror'] = '登录配置不正确。请联系管理员。';
+$messages['loginexpired'] = '您的登录尝试已过期。请重新输入用户名和密码。';
+$messages['loginresponseerror'] = '邮件服务器返回了意外响应。请稍后重试。';

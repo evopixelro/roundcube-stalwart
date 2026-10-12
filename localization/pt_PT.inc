@@ -126,3 +126,9 @@ $messages['invalidprefix'] = 'Utilize 1 a 64 letras, dígitos ou sublinhados, co
 $messages['invalidsitedomain'] = 'Introduza um domínio de website, por exemplo shop.example.com, sem https:// ou um caminho.';
 $messages['maskedexpired'] = 'Um endereço expirado não pode ser reativado. Gere um novo.';
 $messages['enterpriserequired'] = 'Esta funcionalidade requer uma licença Enterprise no servidor de e-mail. Entre em contacto com o seu administrador.';
+
+$labels['loginotphelp'] = 'Introduza o código de seis dígitos da sua aplicação de autenticação para concluir o início de sessão.';
+$labels['loginverify'] = 'Verificar e iniciar sessão';
+$messages['loginconfigurationerror'] = 'O início de sessão não está configurado corretamente. Contacte o administrador.';
+$messages['loginexpired'] = 'A sua tentativa de início de sessão expirou. Introduza novamente o nome de utilizador e a palavra-passe.';
+$messages['loginresponseerror'] = 'O servidor de correio devolveu uma resposta inesperada. Tente novamente mais tarde.';

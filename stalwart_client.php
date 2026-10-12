@@ -63,11 +63,15 @@ class rcube_stalwart_client
         if (!empty($_SESSION['oauth_token'])) {
             // In Roundcube 1.6 this method reports a successful refresh, not an unexpired token.
             if (isset($_SESSION['oauth_token']['expires']) && $_SESSION['oauth_token']['expires'] < time()
-                && !rcmail_oauth::get_instance()->is_token_valid()
+                && !$rc->oauth->is_token_valid()
             ) {
                 throw new RuntimeException('authenticationerror');
             }
-            $authorization = ['token' => $_SESSION['oauth_token']['access_token'] ?? ''];
+            $token = $_SESSION['oauth_token']['access_token'] ?? '';
+            if (!empty($_SESSION['oauth_token']['stalwart_login'])) {
+                $token = $rc->decrypt($token);
+            }
+            $authorization = ['token' => $token];
         }
         else {
             $authorization = [

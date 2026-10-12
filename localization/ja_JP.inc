@@ -126,3 +126,9 @@ $messages['invalidprefix'] = '文字または数字で始まる 1 ～ 64 の文�
 $messages['invalidsitedomain'] = 'サイトのドメイン (例: shop.example.com) を https:// またはパスなしで入力します。';
 $messages['maskedexpired'] = '有効期限が切れたアドレスを再アクティブ化することはできません。新しいものを生成します。';
 $messages['enterpriserequired'] = 'この機能には、メール サーバーの Enterprise ライセンスが必要です。管理者に連絡してください。';
+
+$labels['loginotphelp'] = 'ログインを完了するには、認証アプリに表示される6桁のコードを入力してください。';
+$labels['loginverify'] = '確認してログイン';
+$messages['loginconfigurationerror'] = 'ログインが正しく設定されていません。管理者にお問い合わせください。';
+$messages['loginexpired'] = 'ログインの試行が期限切れになりました。ユーザー名とパスワードをもう一度入力してください。';
+$messages['loginresponseerror'] = 'メールサーバーから予期しない応答が返されました。しばらくしてからもう一度お試しください。';

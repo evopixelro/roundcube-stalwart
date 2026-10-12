@@ -126,3 +126,9 @@ $messages['invalidprefix'] = 'Utilisez 1 à 64 lettres, chiffres ou traits de so
 $messages['invalidsitedomain'] = 'Saisissez un domaine de site, par exemple shop.example.com, sans https:// ni chemin.';
 $messages['maskedexpired'] = 'Une adresse expirée ne peut pas être réactivée. Générez-en un nouveau.';
 $messages['enterpriserequired'] = 'Cette fonctionnalité nécessite une licence Entreprise sur le serveur de messagerie. Contactez votre administrateur.';
+
+$labels['loginotphelp'] = 'Saisissez le code à six chiffres de votre application d’authentification pour terminer la connexion.';
+$labels['loginverify'] = 'Vérifier et se connecter';
+$messages['loginconfigurationerror'] = 'La connexion n’est pas configurée correctement. Contactez votre administrateur.';
+$messages['loginexpired'] = 'Votre tentative de connexion a expiré. Saisissez à nouveau votre nom d’utilisateur et votre mot de passe.';
+$messages['loginresponseerror'] = 'Le serveur de messagerie a renvoyé une réponse inattendue. Réessayez plus tard.';

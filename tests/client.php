@@ -138,7 +138,9 @@ class rcmail_oauth
 }
 $rc = new class {
     public $config;
+    public $oauth;
     public function __construct() {
+        $this->oauth = new rcmail_oauth();
         $this->config = new class {
             public function get($key, $default = null) {
                 return ['stalwart_enabled' => true, 'stalwart_api_url' => 'https://mail.example.test/jmap'][$key] ?? $default;

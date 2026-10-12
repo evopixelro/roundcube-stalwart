@@ -126,3 +126,9 @@ $messages['invalidprefix'] = 'از 1 تا 64 حرف، رقم یا زیرخط ا�
 $messages['invalidsitedomain'] = 'یک دامنه سایت، به عنوان مثال shop.example.com، بدون https:// یا مسیر وارد کنید.';
 $messages['maskedexpired'] = 'آدرس منقضی شده را نمی توان دوباره فعال کرد. یک مورد جدید تولید کنید.';
 $messages['enterpriserequired'] = 'این ویژگی به مجوز Enterprise در سرور ایمیل نیاز دارد. با سرپرست خود تماس بگیرید.';
+
+$labels['loginotphelp'] = 'برای تکمیل ورود، کد شش‌رقمی برنامه احراز هویت خود را وارد کنید.';
+$labels['loginverify'] = 'تأیید و ورود';
+$messages['loginconfigurationerror'] = 'ورود به‌درستی پیکربندی نشده است. با مدیر سیستم تماس بگیرید.';
+$messages['loginexpired'] = 'مهلت تلاش شما برای ورود به پایان رسیده است. نام کاربری و گذرواژه خود را دوباره وارد کنید.';
+$messages['loginresponseerror'] = 'سرور ایمیل پاسخ غیرمنتظره‌ای برگرداند. بعداً دوباره تلاش کنید.';

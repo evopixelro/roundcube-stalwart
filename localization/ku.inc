@@ -126,3 +126,9 @@ $messages['invalidprefix'] = 'Ji 1 heta 64 tîpan, reqeman an binxetê bikar bî
 $messages['invalidsitedomain'] = 'Têkeve domainek malperê, mînakî shop.example.com, bêyî https:// an rê.';
 $messages['maskedexpired'] = 'Navnîşanek qediyayî ji nû ve nayê aktîf kirin. Yek nû çêbikin.';
 $messages['enterpriserequired'] = 'Ev taybetmendî lîsansek Enterprise li ser servera nameyê hewce dike. Bi rêvebirê xwe re têkilî daynin.';
+
+$labels['loginotphelp'] = 'Ji bo qedandina têketinê, koda şeşreqemî ya sepana xwe ya piştrastkirinê binivîse.';
+$labels['loginverify'] = 'Piştrast bike û têkeve';
+$messages['loginconfigurationerror'] = 'Têketin bi awayekî rast nehatiye mîhengkirin. Bi rêveberê xwe re têkilî dayne.';
+$messages['loginexpired'] = 'Dema hewldana te ya têketinê qediya. Navê bikarhêner û şîfreya xwe dîsa binivîse.';
+$messages['loginresponseerror'] = 'Pêşkêşkara e-nameyê bersiveke nedihat hêvîkirin vegerand. Dû re dîsa biceribîne.';

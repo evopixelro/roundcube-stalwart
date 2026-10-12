@@ -126,3 +126,9 @@ $messages['invalidprefix'] = 'Izmantojiet 1–64 burtus, ciparus vai pasvītras,
 $messages['invalidsitedomain'] = 'Ievadiet vietnes domēnu, piemēram, shop.example.com, bez https:// vai ceļa.';
 $messages['maskedexpired'] = 'Adresi, kurai beidzies derīguma termiņš, nevar atkārtoti aktivizēt. Ģenerējiet jaunu.';
 $messages['enterpriserequired'] = 'Šim līdzeklim ir nepieciešama uzņēmuma licence pasta serverī. Sazinieties ar savu administratoru.';
+
+$labels['loginotphelp'] = 'Lai pabeigtu pieteikšanos, ievadiet sešciparu kodu no autentifikācijas lietotnes.';
+$labels['loginverify'] = 'Apstiprināt un pieteikties';
+$messages['loginconfigurationerror'] = 'Pieteikšanās nav pareizi konfigurēta. Sazinieties ar administratoru.';
+$messages['loginexpired'] = 'Jūsu pieteikšanās mēģinājuma derīguma termiņš ir beidzies. Vēlreiz ievadiet lietotājvārdu un paroli.';
+$messages['loginresponseerror'] = 'Pasta serveris atgrieza negaidītu atbildi. Mēģiniet vēlāk vēlreiz.';

@@ -126,3 +126,9 @@ $messages['invalidprefix'] = 'Bain úsáid as 1 go 64 litir, dhigit nó béim, a
 $messages['invalidsitedomain'] = 'Cuir isteach fearann ​​suímh, mar shampla shop.example.com, gan https:// nó cosán.';
 $messages['maskedexpired'] = 'Ní féidir seoladh atá imithe in éag a athghníomhú. Gin ceann nua.';
 $messages['enterpriserequired'] = 'Tá ceadúnas Enterprise ag teastáil don ghné seo ar an bhfreastalaí ríomhphoist. Déan teagmháil le do riarthóir.';
+
+$labels['loginotphelp'] = 'Cuir isteach an cód sé dhigit ó d’aip fíordheimhnithe chun an síniú isteach a chríochnú.';
+$labels['loginverify'] = 'Fíoraigh agus sínigh isteach';
+$messages['loginconfigurationerror'] = 'Níl an síniú isteach cumraithe i gceart. Déan teagmháil le do riarthóir.';
+$messages['loginexpired'] = 'Tá d’iarracht sínithe isteach imithe in éag. Cuir isteach d’ainm úsáideora agus do phasfhocal arís.';
+$messages['loginresponseerror'] = 'Thug an freastalaí ríomhphoist freagra gan choinne. Bain triail eile as níos déanaí.';

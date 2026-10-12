@@ -6,6 +6,14 @@
 $config['stalwart_enabled'] = false;
 $config['stalwart_api_url'] = '';
 
+// Optional native login with a second Stalwart TOTP step. Requires Stalwart 0.16.26.
+// Register a dedicated OAuth client and its exact HTTPS redirect URI on Stalwart.
+// Use this mode without Roundcube's separate oauth_provider redirect login.
+$config['stalwart_login_enabled'] = false;
+$config['stalwart_login_client_id'] = '';
+$config['stalwart_login_client_secret'] = '';
+$config['stalwart_login_redirect_uri'] = '';
+
 // Independently enable each native settings page.
 $config['stalwart_twofactor_enabled'] = false;
 $config['stalwart_app_passwords_enabled'] = false;

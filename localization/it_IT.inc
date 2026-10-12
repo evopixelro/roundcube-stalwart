@@ -126,3 +126,9 @@ $messages['invalidprefix'] = 'Utilizzare da 1 a 64 lettere, cifre o trattini bas
 $messages['invalidsitedomain'] = 'Inserisci il dominio di un sito, ad esempio shop.example.com, senza https:// o un percorso.';
 $messages['maskedexpired'] = 'Un indirizzo scaduto non può essere riattivato. Generarne uno nuovo.';
 $messages['enterpriserequired'] = 'Questa funzionalità richiede una licenza Enterprise sul server di posta. Contatta il tuo amministratore.';
+
+$labels['loginotphelp'] = 'Inserisci il codice a sei cifre dell’app di autenticazione per completare l’accesso.';
+$labels['loginverify'] = 'Verifica e accedi';
+$messages['loginconfigurationerror'] = 'L’accesso non è configurato correttamente. Contatta l’amministratore.';
+$messages['loginexpired'] = 'Il tentativo di accesso è scaduto. Inserisci nuovamente nome utente e password.';
+$messages['loginresponseerror'] = 'Il server di posta ha restituito una risposta imprevista. Riprova più tardi.';

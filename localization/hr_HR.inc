@@ -126,3 +126,9 @@ $messages['invalidprefix'] = 'Koristite 1 do 64 slova, znamenke ili podvlake, po
 $messages['invalidsitedomain'] = 'Unesite domenu stranice, na primjer shop.example.com, bez https:// ili putanje.';
 $messages['maskedexpired'] = 'Adresa koja je istekla ne može se ponovno aktivirati. Generirajte novi.';
 $messages['enterpriserequired'] = 'Ova značajka zahtijeva Enterprise licencu na poslužitelju e-pošte. Kontaktirajte svog administratora.';
+
+$labels['loginotphelp'] = 'Unesite šesteroznamenkasti kod iz aplikacije za autentifikaciju kako biste dovršili prijavu.';
+$labels['loginverify'] = 'Potvrdi i prijavi se';
+$messages['loginconfigurationerror'] = 'Prijava nije ispravno postavljena. Obratite se administratoru.';
+$messages['loginexpired'] = 'Vaš pokušaj prijave je istekao. Ponovno unesite korisničko ime i lozinku.';
+$messages['loginresponseerror'] = 'Poslužitelj e-pošte vratio je neočekivan odgovor. Pokušajte ponovno kasnije.';

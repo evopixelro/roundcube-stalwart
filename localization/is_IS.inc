@@ -126,3 +126,9 @@ $messages['invalidprefix'] = 'Notaðu 1 til 64 bókstafi, tölustafi eða undirs
 $messages['invalidsitedomain'] = 'Sláðu inn vefsvæðislén, til dæmis shop.example.com, án https:// eða slóðar.';
 $messages['maskedexpired'] = 'Ekki er hægt að endurvirkja útrunnið heimilisfang. Búðu til nýjan.';
 $messages['enterpriserequired'] = 'Þessi eiginleiki krefst Enterprise leyfis á póstþjóninum. Hafðu samband við stjórnanda þinn.';
+
+$labels['loginotphelp'] = 'Sláðu inn sex stafa kóðann úr auðkenningarforritinu þínu til að ljúka innskráningu.';
+$labels['loginverify'] = 'Staðfesta og skrá inn';
+$messages['loginconfigurationerror'] = 'Innskráning er ekki rétt stillt. Hafðu samband við kerfisstjóra.';
+$messages['loginexpired'] = 'Innskráningartilraunin þín er útrunnin. Sláðu inn notandanafnið og lykilorðið aftur.';
+$messages['loginresponseerror'] = 'Póstþjónninn skilaði óvæntu svari. Reyndu aftur síðar.';

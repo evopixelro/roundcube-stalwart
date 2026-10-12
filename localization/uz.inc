@@ -126,3 +126,9 @@ $messages['invalidprefix'] = 'Harf yoki raqamdan boshlab 1 dan 64 gacha harf, ra
 $messages['invalidsitedomain'] = 'Sayt domenini, masalan shop.example.com, https:// yoki yoʻlsiz kiriting.';
 $messages['maskedexpired'] = 'Muddati oʻtgan manzilni qayta faollashtirib boʻlmaydi. Yangisini yarating.';
 $messages['enterpriserequired'] = 'Bu xususiyat pochta serverida Enterprise litsenziyasini talab qiladi. Administratoringizga murojaat qiling.';
+
+$labels['loginotphelp'] = 'Kirishni yakunlash uchun autentifikatsiya ilovangizdagi olti xonali kodni kiriting.';
+$labels['loginverify'] = 'Tasdiqlash va kirish';
+$messages['loginconfigurationerror'] = 'Kirish to‘g‘ri sozlanmagan. Administratoringizga murojaat qiling.';
+$messages['loginexpired'] = 'Kirish urinishingiz muddati tugadi. Foydalanuvchi nomi va parolingizni qayta kiriting.';
+$messages['loginresponseerror'] = 'Pochta serveri kutilmagan javob qaytardi. Keyinroq qayta urinib ko‘ring.';

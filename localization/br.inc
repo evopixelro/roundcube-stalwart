@@ -126,3 +126,9 @@ $messages['invalidprefix'] = 'Implijout 1 da 64 lizherenn, sifroù pe islinenno�
 $messages['invalidsitedomain'] = 'Lakait un domani lec\'hienn, da skouer shop.example.com, hep https:// pe un hent.';
 $messages['maskedexpired'] = 'N\'haller ket adlakaat ur chomlec\'h aet da get. Krouiñ unan nevez.';
 $messages['enterpriserequired'] = 'Ret eo d\'an elfenn-mañ kaout un aotre Enterprise war ar servijer posteloù. Kit e darempred gant ho merour.';
+
+$labels['loginotphelp'] = 'Ebarzhit ar c\'hod c\'hwec\'h sifr eus hoc\'h arload dilesa evit echuiñ ar c\'hennaskañ.';
+$labels['loginverify'] = 'Gwiriañ ha kennaskañ';
+$messages['loginconfigurationerror'] = 'N\'eo ket kefluniet mat ar c\'hennaskañ. Kit e darempred gant ho merour.';
+$messages['loginexpired'] = 'Diamzeret eo hoc\'h esa kennaskañ. Ebarzhit ho anv implijer hag ho ker-tremen en-dro.';
+$messages['loginresponseerror'] = 'Ur respont dic\'hortoz a zo bet kaset gant ar servijer postel. Klaskit en-dro diwezhatoc\'h.';

@@ -126,3 +126,9 @@ $messages['invalidprefix'] = 'Benotzt 1 ze 64 Buschtawen, Zifferen oder ënnerst
 $messages['invalidsitedomain'] = 'Gitt e Site Domain, zum Beispill shop.example.com, ouni https:// oder e Wee.';
 $messages['maskedexpired'] = 'Eng ofgelaaf Adress kann net reaktivéiert ginn. Generéiere en neien.';
 $messages['enterpriserequired'] = 'Dës Fonktioun verlaangt eng Enterprise Lizenz op der Mail Server. Kontaktéiert Ären Administrator.';
+
+$labels['loginotphelp'] = 'Gitt de sechsstelege Code aus Ärer Authentifikatiouns-App an, fir d\'Umeldung ofzeschléissen.';
+$labels['loginverify'] = 'Bestätegen an umellen';
+$messages['loginconfigurationerror'] = 'D\'Umeldung ass net richteg konfiguréiert. Kontaktéiert Ären Administrateur.';
+$messages['loginexpired'] = 'Ären Umeldungsversuch ass ofgelaf. Gitt Äre Benotzernumm an Äert Passwuert nach eng Kéier an.';
+$messages['loginresponseerror'] = 'De Mailserver huet eng onerwaart Äntwert zeréckginn. Probéiert et méi spéit nach eng Kéier.';

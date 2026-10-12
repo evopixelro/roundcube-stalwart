@@ -126,3 +126,9 @@ $messages['invalidprefix'] = 'Gunakan 1 hingga 64 huruf, digit atau garis bawah,
 $messages['invalidsitedomain'] = 'Masukkan domain tapak, contohnya shop.example.com, tanpa https:// atau laluan.';
 $messages['maskedexpired'] = 'Alamat yang telah tamat tempoh tidak boleh diaktifkan semula. Hasilkan yang baru.';
 $messages['enterpriserequired'] = 'Ciri ini memerlukan lesen Perusahaan pada pelayan mel. Hubungi pentadbir anda.';
+
+$labels['loginotphelp'] = 'Masukkan kod enam digit daripada aplikasi pengesah anda untuk melengkapkan log masuk.';
+$labels['loginverify'] = 'Sahkan dan log masuk';
+$messages['loginconfigurationerror'] = 'Log masuk tidak dikonfigurasikan dengan betul. Hubungi pentadbir anda.';
+$messages['loginexpired'] = 'Percubaan log masuk anda telah tamat tempoh. Masukkan nama pengguna dan kata laluan anda sekali lagi.';
+$messages['loginresponseerror'] = 'Pelayan mel mengembalikan respons yang tidak dijangka. Cuba lagi kemudian.';

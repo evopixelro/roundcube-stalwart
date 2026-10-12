@@ -126,3 +126,9 @@ $messages['invalidprefix'] = 'Használjon 1–64 betűt, számjegyet vagy aláh�
 $messages['invalidsitedomain'] = 'Adja meg a webhely domainjét, például shop.example.com, https:// vagy elérési út nélkül.';
 $messages['maskedexpired'] = 'A lejárt cím nem aktiválható újra. Hozzon létre egy újat.';
 $messages['enterpriserequired'] = 'Ehhez a szolgáltatáshoz vállalati licenc szükséges a levelezőszerveren. Forduljon a rendszergazdához.';
+
+$labels['loginotphelp'] = 'A bejelentkezés befejezéséhez adja meg a hitelesítő alkalmazás hatjegyű kódját.';
+$labels['loginverify'] = 'Ellenőrzés és bejelentkezés';
+$messages['loginconfigurationerror'] = 'A bejelentkezés nincs megfelelően beállítva. Forduljon a rendszergazdához.';
+$messages['loginexpired'] = 'A bejelentkezési kísérlete lejárt. Adja meg újra a felhasználónevét és jelszavát.';
+$messages['loginresponseerror'] = 'A levelezőszerver váratlan választ adott. Próbálja újra később.';

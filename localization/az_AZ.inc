@@ -126,3 +126,9 @@ $messages['invalidprefix'] = 'Hərf və ya rəqəmlə başlayan 1-dən 64-ə qə
 $messages['invalidsitedomain'] = 'https:// və ya yol olmadan, məsələn shop.example.com kimi sayt domenini daxil edin.';
 $messages['maskedexpired'] = 'Müddəti bitmiş ünvan yenidən aktivləşdirilə bilməz. Yenisini yaradın.';
 $messages['enterpriserequired'] = 'Bu xüsusiyyət poçt serverində Enterprise lisenziyasını tələb edir. Administratorunuzla əlaqə saxlayın.';
+
+$labels['loginotphelp'] = 'Girişi tamamlamaq üçün autentifikasiya tətbiqinizdəki altırəqəmli kodu daxil edin.';
+$labels['loginverify'] = 'Təsdiqlə və daxil ol';
+$messages['loginconfigurationerror'] = 'Giriş düzgün qurulmayıb. Administratorunuzla əlaqə saxlayın.';
+$messages['loginexpired'] = 'Giriş cəhdinizin vaxtı bitib. İstifadəçi adınızı və şifrənizi yenidən daxil edin.';
+$messages['loginresponseerror'] = 'Poçt serveri gözlənilməz cavab qaytardı. Daha sonra yenidən cəhd edin.';

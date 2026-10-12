@@ -126,3 +126,9 @@ $messages['invalidprefix'] = 'Użyj od 1 do 64 liter, cyfr lub podkreśleń, zac
 $messages['invalidsitedomain'] = 'Wpisz domenę serwisu, np. shop.example.com, bez https:// i ścieżki.';
 $messages['maskedexpired'] = 'Nie można ponownie aktywować wygasłego adresu. Wygeneruj nowy.';
 $messages['enterpriserequired'] = 'Ta funkcja wymaga licencji Enterprise na serwerze pocztowym. Skontaktuj się ze swoim administratorem.';
+
+$labels['loginotphelp'] = 'Wpisz sześciocyfrowy kod z aplikacji uwierzytelniającej, aby dokończyć logowanie.';
+$labels['loginverify'] = 'Potwierdź i zaloguj się';
+$messages['loginconfigurationerror'] = 'Logowanie nie jest poprawnie skonfigurowane. Skontaktuj się z administratorem.';
+$messages['loginexpired'] = 'Próba logowania wygasła. Wpisz ponownie nazwę użytkownika i hasło.';
+$messages['loginresponseerror'] = 'Serwer pocztowy zwrócił nieoczekiwaną odpowiedź. Spróbuj ponownie później.';

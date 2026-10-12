@@ -126,3 +126,9 @@ $messages['invalidprefix'] = 'Bir harf veya rakamla başlayarak 1 ila 64 harf, r
 $messages['invalidsitedomain'] = 'https:// veya yol olmadan shop.example.com gibi bir site etki alanı girin.';
 $messages['maskedexpired'] = 'Süresi dolmuş bir adres yeniden etkinleştirilemez. Yeni bir tane oluşturun.';
 $messages['enterpriserequired'] = 'Bu özellik, posta sunucusunda Kurumsal lisans gerektirir. Yöneticinizle iletişime geçin.';
+
+$labels['loginotphelp'] = 'Giriş işlemini tamamlamak için kimlik doğrulama uygulamanızdaki altı haneli kodu girin.';
+$labels['loginverify'] = 'Doğrula ve giriş yap';
+$messages['loginconfigurationerror'] = 'Giriş doğru yapılandırılmamış. Yöneticinizle iletişime geçin.';
+$messages['loginexpired'] = 'Giriş denemenizin süresi doldu. Kullanıcı adınızı ve parolanızı yeniden girin.';
+$messages['loginresponseerror'] = 'Posta sunucusu beklenmeyen bir yanıt döndürdü. Daha sonra tekrar deneyin.';

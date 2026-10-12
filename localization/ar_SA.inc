@@ -126,3 +126,9 @@ $messages['invalidprefix'] = 'استخدم من 1 إلى 64 حرفًا أو رق
 $messages['invalidsitedomain'] = 'أدخل مجال الموقع، على سبيل المثال، shop.example.com، بدون https:// أو مسار.';
 $messages['maskedexpired'] = 'لا يمكن إعادة تنشيط العنوان منتهي الصلاحية. إنشاء واحدة جديدة.';
 $messages['enterpriserequired'] = 'تتطلب هذه الميزة ترخيصًا مؤسسيًا على خادم البريد. اتصل بالمسؤول.';
+
+$labels['loginotphelp'] = 'أدخل الرمز المكوّن من ستة أرقام من تطبيق المصادقة لإكمال تسجيل الدخول.';
+$labels['loginverify'] = 'التحقق وتسجيل الدخول';
+$messages['loginconfigurationerror'] = 'لم يتم إعداد تسجيل الدخول بشكل صحيح. اتصل بالمسؤول.';
+$messages['loginexpired'] = 'انتهت صلاحية محاولة تسجيل الدخول. أدخل اسم المستخدم وكلمة المرور مرة أخرى.';
+$messages['loginresponseerror'] = 'أعاد خادم البريد استجابة غير متوقعة. حاول مرة أخرى لاحقًا.';

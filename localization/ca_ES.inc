@@ -126,3 +126,9 @@ $messages['invalidprefix'] = 'Utilitzeu d\'1 a 64 lletres, dígits o guions baix
 $messages['invalidsitedomain'] = 'Introduïu un domini de lloc, per exemple shop.example.com, sense https:// ni un camí.';
 $messages['maskedexpired'] = 'Una adreça caducada no es pot reactivar. Genera un de nou.';
 $messages['enterpriserequired'] = 'Aquesta característica requereix una llicència Enterprise al servidor de correu. Contacta amb el teu administrador.';
+
+$labels['loginotphelp'] = 'Introduïu el codi de sis dígits de l\'aplicació d\'autenticació per completar l\'inici de sessió.';
+$labels['loginverify'] = 'Verifica i inicia la sessió';
+$messages['loginconfigurationerror'] = 'L\'inici de sessió no està configurat correctament. Contacteu amb l\'administrador.';
+$messages['loginexpired'] = 'L\'intent d\'inici de sessió ha caducat. Torneu a introduir el nom d\'usuari i la contrasenya.';
+$messages['loginresponseerror'] = 'El servidor de correu ha retornat una resposta inesperada. Torneu-ho a provar més tard.';

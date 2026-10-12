@@ -126,3 +126,9 @@ $messages['invalidprefix'] = 'Defnyddiwch 1 i 64 o lythrennau, digidau neu danli
 $messages['invalidsitedomain'] = 'Rhowch barth safle, er enghraifft shop.example.com, heb https:// neu lwybr.';
 $messages['maskedexpired'] = 'Ni ellir ail-ysgogi cyfeiriad sydd wedi dod i ben. Cynhyrchu un newydd.';
 $messages['enterpriserequired'] = 'Mae angen trwydded Enterprise ar y gweinydd post ar gyfer y nodwedd hon. Cysylltwch â\'ch gweinyddwr.';
+
+$labels['loginotphelp'] = 'Rhowch y cod chwe digid o\'ch ap dilysu i gwblhau\'r mewngofnodi.';
+$labels['loginverify'] = 'Dilysu a mewngofnodi';
+$messages['loginconfigurationerror'] = 'Nid yw mewngofnodi wedi\'i ffurfweddu\'n gywir. Cysylltwch â\'ch gweinyddwr.';
+$messages['loginexpired'] = 'Mae eich ymgais i fewngofnodi wedi dod i ben. Rhowch eich enw defnyddiwr a\'ch cyfrinair eto.';
+$messages['loginresponseerror'] = 'Dychwelodd y gweinydd e-bost ymateb annisgwyl. Rhowch gynnig arall arni yn nes ymlaen.';

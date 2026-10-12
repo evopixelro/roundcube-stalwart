@@ -126,3 +126,9 @@ $messages['invalidprefix'] = 'השתמש ב-1 עד 64 אותיות, ספרות �
 $messages['invalidsitedomain'] = 'הזן דומיין של אתר, למשל shop.example.com, ללא https:// או נתיב.';
 $messages['maskedexpired'] = 'לא ניתן להפעיל מחדש כתובת שפג תוקפו. צור אחד חדש.';
 $messages['enterpriserequired'] = 'תכונה זו דורשת רישיון Enterprise בשרת הדואר. פנה למנהל המערכת שלך.';
+
+$labels['loginotphelp'] = 'יש להזין את הקוד בן שש הספרות מיישומון האימות כדי להשלים את הכניסה.';
+$labels['loginverify'] = 'אימות וכניסה';
+$messages['loginconfigurationerror'] = 'הכניסה אינה מוגדרת כראוי. יש לפנות למנהל המערכת.';
+$messages['loginexpired'] = 'תוקף ניסיון הכניסה שלך פג. יש להזין שוב את שם המשתמש והסיסמה.';
+$messages['loginresponseerror'] = 'שרת הדואר החזיר תגובה לא צפויה. יש לנסות שוב מאוחר יותר.';

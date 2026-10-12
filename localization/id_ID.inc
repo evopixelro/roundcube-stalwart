@@ -126,3 +126,9 @@ $messages['invalidprefix'] = 'Gunakan 1 hingga 64 huruf, angka, atau garis bawah
 $messages['invalidsitedomain'] = 'Masukkan domain situs, misalnya shop.example.com, tanpa https:// atau jalur.';
 $messages['maskedexpired'] = 'Alamat yang sudah habis masa berlakunya tidak dapat diaktifkan kembali. Hasilkan yang baru.';
 $messages['enterpriserequired'] = 'Fitur ini memerlukan lisensi Perusahaan di server email. Hubungi administrator Anda.';
+
+$labels['loginotphelp'] = 'Masukkan kode enam digit dari aplikasi autentikator Anda untuk menyelesaikan proses masuk.';
+$labels['loginverify'] = 'Verifikasi dan masuk';
+$messages['loginconfigurationerror'] = 'Proses masuk belum dikonfigurasi dengan benar. Hubungi administrator Anda.';
+$messages['loginexpired'] = 'Percobaan masuk Anda telah kedaluwarsa. Masukkan kembali nama pengguna dan kata sandi Anda.';
+$messages['loginresponseerror'] = 'Server surel mengembalikan respons yang tidak terduga. Coba lagi nanti.';
