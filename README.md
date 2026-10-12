@@ -15,13 +15,15 @@ deployment has not yet been validated. Test on a staging account before deployme
 - Email aliases for accounts with existing administrative permissions.
 - Public OpenPGP/S/MIME keys: import, rename and delete.
 - Masked email: create, enable/disable and delete on Stalwart Enterprise.
+- Optional native login with a second Stalwart TOTP step before mailbox access.
 
 Features are independently configurable and disabled by default. The plugin uses
 native settings pages and multilingual catalogs with native English fallback.
 No core, skin, built-in
 Password plugin or database patches are needed.
 
-The 80 complete language catalogs cover Roundcube 1.6/1.7 through native fallbacks.
+The 80 language catalogs cover Roundcube 1.6/1.7 through native fallbacks.
+Login and two-factor messages are included in all 80 language catalogs.
 New translations are machine-generated; native-speaker corrections are welcome.
 Dari uses the Persian fallback. Asturian, Interlingua, Kabyle, Norwegian Nynorsk
 and Talossan currently use English.
@@ -67,13 +69,14 @@ router. This plugin adds no public PHP endpoint or extra rewrite requirement.
 The Stalwart contract was checked against **0.16.25**, using the current `x:*`
 JMAP management API, not legacy REST endpoints. Password/TOTP management targets
 Stalwart's internal directory, not credentials managed by external directories.
+The optional embedded login targets **0.16.26** and its `/api/auth` OAuth flow.
 
 ## Install
 
 From the **Roundcube root**, where its `composer.json` is located:
 
 ```sh
-composer require "evopixel/stalwart:1.0.2"
+composer require "evopixel/stalwart:1.0.6"
 ```
 
 The package and its dependencies are available on Packagist. No extra
@@ -116,6 +119,10 @@ Roundcube installation or a separate plugin `vendor` directory.
 | `stalwart_aliases_enabled` | `false` | Alias administration |
 | `stalwart_public_keys_enabled` | `false` | Public-key management |
 | `stalwart_masked_email_enabled` | `false` | Enterprise masked email |
+| `stalwart_login_enabled` | `false` | Native username/password and optional TOTP login |
+| `stalwart_login_client_id` | `''` | Dedicated registered Stalwart OAuth client |
+| `stalwart_login_client_secret` | `''` | Client secret, if required by its registration |
+| `stalwart_login_redirect_uri` | `''` | Exact registered HTTPS callback URI |
 
 For example, in the local plugin configuration:
 
@@ -130,6 +137,49 @@ Enable other features only after reviewing the permission requirements below.
 Disabled features have no settings entry or registered feature actions. The
 master switch and URL are required for all features. Disabling the TOTP management
 page does not bypass OTP verification on password changes.
+
+### Embedded login
+
+This optional mode keeps sign-in inside the active Roundcube skin. Accounts
+without TOTP proceed after username/password verification. When Stalwart requests
+MFA, Roundcube asks for the six-digit code before opening an IMAP connection.
+Stalwart verifies the code; the plugin never reads the account's TOTP seed.
+
+Register a dedicated OAuth client on Stalwart with the exact HTTPS callback URI
+configured below. Allow the `openid`, `offline_access` and
+`urn:ietf:params:oauth:scope:mail` scopes. Configure one fixed IMAP server and SMTP
+on the same Stalwart deployment, with TLS for remote connections and XOAUTH2
+support. The JMAP URL must end in `/jmap`; its HTTPS origin must match Stalwart's
+configured issuer. Embedded sign-in does not redirect the browser to the callback,
+but Stalwart still validates it when issuing the authorization code and token.
+
+```php
+$config['stalwart_enabled'] = true;
+$config['stalwart_api_url'] = 'https://mail-server.example.com/jmap';
+$config['stalwart_login_enabled'] = true;
+$config['stalwart_login_client_id'] = 'YOUR_REGISTERED_CLIENT_ID';
+$config['stalwart_login_redirect_uri'] = 'https://webmail.example.com/index.php/login/oauth';
+// Set stalwart_login_client_secret if the registered client requires a secret.
+```
+
+Use this mode without Roundcube's `oauth_provider` redirect configuration. For
+external-provider login instead, leave `stalwart_login_enabled` disabled and use
+Roundcube's native OAuth settings. The settings pages work with either mode.
+External-provider login forms follow Roundcube's configuration and rendering;
+this plugin does not change other providers' login forms.
+
+Pending challenges expire after five minutes or five attempts. The password is
+encrypted in the server-side session while awaiting the code, then discarded on
+completion, cancellation or failure. Expired pending data is removed on the next
+request or by normal session garbage collection. PKCE S256 binds the code exchange;
+access and refresh tokens use Roundcube's session encryption. A rejected token
+refresh ends the mailbox session. Existing sessions should be signed out when
+switching login modes; there is no database schema change.
+
+API and lifecycle checks use mocked responses. The browser fixture uses the real
+Roundcube form and plugin with a simulated OAuth/IMAP server. Verify registration,
+IMAP, SMTP, token renewal and logout against your Stalwart deployment before
+enabling this mode in production.
 
 ### Password provider
 
@@ -277,7 +327,7 @@ accounts. Live Stalwart validation remains necessary for production claims.
 
 Follow existing four-space PHP formatting and native hooks, actions, HTML helpers,
 translations and the `plugin` template. Keep feature-specific helpers separate
-and avoid core/skin patches. Update the complete language catalogs together, preserve CSRF and
+and avoid core/skin patches. Keep translation fallbacks covered, preserve CSRF and
 ownership checks, and add regression checks for security-sensitive changes.
 See the [Roundcube Plugin API](https://github.com/roundcube/roundcubemail/wiki/Plugin-API).
 

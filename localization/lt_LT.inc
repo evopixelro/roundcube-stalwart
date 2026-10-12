@@ -126,3 +126,9 @@ $messages['invalidprefix'] = 'Naudokite nuo 1 iki 64 raidžių, skaitmenų arba 
 $messages['invalidsitedomain'] = 'Įveskite svetainės domeną, pvz., shop.example.com, be https:// arba kelio.';
 $messages['maskedexpired'] = 'Adresas, kurio galiojimo laikas pasibaigęs, negali būti iš naujo suaktyvintas. Sugeneruokite naują.';
 $messages['enterpriserequired'] = 'Šiai funkcijai reikalinga įmonės licencija pašto serveryje. Susisiekite su administratoriumi.';
+
+$labels['loginotphelp'] = 'Norėdami užbaigti prisijungimą, įveskite šešiaženklį kodą iš autentifikavimo programėlės.';
+$labels['loginverify'] = 'Patvirtinti ir prisijungti';
+$messages['loginconfigurationerror'] = 'Prisijungimas netinkamai sukonfigūruotas. Kreipkitės į administratorių.';
+$messages['loginexpired'] = 'Jūsų prisijungimo bandymo laikas baigėsi. Dar kartą įveskite naudotojo vardą ir slaptažodį.';
+$messages['loginresponseerror'] = 'Pašto serveris pateikė netikėtą atsakymą. Bandykite vėliau.';

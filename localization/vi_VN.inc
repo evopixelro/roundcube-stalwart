@@ -126,3 +126,9 @@ $messages['invalidprefix'] = 'Sử dụng từ 1 đến 64 chữ cái, chữ s�
 $messages['invalidsitedomain'] = 'Nhập tên miền trang web, ví dụ: shop.example.com, không có https:// hoặc đường dẫn.';
 $messages['maskedexpired'] = 'Địa chỉ đã hết hạn không thể kích hoạt lại được. Tạo một cái mới.';
 $messages['enterpriserequired'] = 'Tính năng này yêu cầu giấy phép Doanh nghiệp trên máy chủ thư. Liên hệ với quản trị viên của bạn.';
+
+$labels['loginotphelp'] = 'Nhập mã gồm sáu chữ số từ ứng dụng xác thực để hoàn tất đăng nhập.';
+$labels['loginverify'] = 'Xác minh và đăng nhập';
+$messages['loginconfigurationerror'] = 'Đăng nhập chưa được cấu hình đúng. Hãy liên hệ quản trị viên.';
+$messages['loginexpired'] = 'Lần đăng nhập của bạn đã hết hạn. Hãy nhập lại tên người dùng và mật khẩu.';
+$messages['loginresponseerror'] = 'Máy chủ thư trả về phản hồi không mong đợi. Vui lòng thử lại sau.';

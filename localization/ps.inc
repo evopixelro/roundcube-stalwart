@@ -126,3 +126,9 @@ $messages['invalidprefix'] = 'له 1 څخه تر 64 حروفونو، عددون�
 $messages['invalidsitedomain'] = 'د سایټ ډومین دننه کړئ، د بیلګې په توګه shop.example.com، پرته له https:// یا لارې.';
 $messages['maskedexpired'] = 'ختم شوی پته نشي فعال کیدی. یو نوی جوړ کړئ.';
 $messages['enterpriserequired'] = 'دا خصوصیت د میل سرور کې د سوداګرۍ جواز ته اړتیا لري. د خپل مدیر سره اړیکه ونیسئ.';
+
+$labels['loginotphelp'] = 'د ننوتلو د بشپړولو لپاره د خپل تصدیق اپلېکېشن شپږ عددي کوډ ولیکئ.';
+$labels['loginverify'] = 'تصدیق او ننوتل';
+$messages['loginconfigurationerror'] = 'د ننوتلو تنظیمات سم نه دي. له خپل مدیر سره اړیکه ونیسئ.';
+$messages['loginexpired'] = 'ستاسو د ننوتلو د هڅې وخت پای ته رسېدلی. خپل کارن نوم او پټنوم بیا ولیکئ.';
+$messages['loginresponseerror'] = 'د برېښنالیک سرور ناڅاپی ځواب ورکړ. وروسته بیا هڅه وکړئ.';

@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.6 - 2026-10-12
+
+- Complete native login messages in all 80 language catalogs.
+- Add optional native sign-in with Stalwart TOTP verification before mailbox access.
+- Use PKCE and Roundcube OAuth token lifecycle for IMAP and SMTP after verification.
+- Add bounded API calls, expiring encrypted challenges and login regression checks.
+
 ## 1.0.2 - 2026-10-09
 
 - Add 78 Roundcube language catalogs with native regional and English fallbacks.

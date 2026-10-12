@@ -126,3 +126,9 @@ $messages['invalidprefix'] = 'Käytä 1–64 kirjainta, numeroa tai alaviivaa al
 $messages['invalidsitedomain'] = 'Anna sivuston verkkotunnus, esimerkiksi shop.example.com, ilman https://-osoitetta tai polkua.';
 $messages['maskedexpired'] = 'Vanhentunutta osoitetta ei voi aktivoida uudelleen. Luo uusi.';
 $messages['enterpriserequired'] = 'Tämä ominaisuus vaatii Enterprise-lisenssin sähköpostipalvelimella. Ota yhteyttä järjestelmänvalvojaan.';
+
+$labels['loginotphelp'] = 'Viimeistele kirjautuminen antamalla todennussovelluksesi kuusinumeroinen koodi.';
+$labels['loginverify'] = 'Vahvista ja kirjaudu sisään';
+$messages['loginconfigurationerror'] = 'Kirjautumista ei ole määritetty oikein. Ota yhteyttä ylläpitäjään.';
+$messages['loginexpired'] = 'Kirjautumisyrityksesi on vanhentunut. Anna käyttäjätunnuksesi ja salasanasi uudelleen.';
+$messages['loginresponseerror'] = 'Postipalvelin palautti odottamattoman vastauksen. Yritä myöhemmin uudelleen.';

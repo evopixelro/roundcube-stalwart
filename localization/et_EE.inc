@@ -126,3 +126,9 @@ $messages['invalidprefix'] = 'Kasutage 1–64 tähte, numbrit või alljoont, alu
 $messages['invalidsitedomain'] = 'Sisestage saidi domeen, nt shop.example.com, ilma https:// või teeta.';
 $messages['maskedexpired'] = 'Aegunud aadressi ei saa uuesti aktiveerida. Looge uus.';
 $messages['enterpriserequired'] = 'See funktsioon nõuab meiliserveris ettevõtte litsentsi. Võtke ühendust oma administraatoriga.';
+
+$labels['loginotphelp'] = 'Sisselogimise lõpetamiseks sisestage autentimisrakendusest kuuekohaline kood.';
+$labels['loginverify'] = 'Kinnita ja logi sisse';
+$messages['loginconfigurationerror'] = 'Sisselogimine pole õigesti seadistatud. Võtke ühendust administraatoriga.';
+$messages['loginexpired'] = 'Teie sisselogimiskatse on aegunud. Sisestage kasutajanimi ja parool uuesti.';
+$messages['loginresponseerror'] = 'Meiliserver tagastas ootamatu vastuse. Proovige hiljem uuesti.';

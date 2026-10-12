@@ -63,6 +63,9 @@ foreach ($metadata['locales'] as $locale => $entry) {
                 localization_check(is_string($translated) && trim($translated) !== '', "$locale/$key is empty");
                 localization_check(localization_variables($translated) === localization_variables($value), "$locale/$key placeholders changed");
                 localization_check(strpos($translated, '987654321') === false && strpos($translated, '__RC_') === false, "$locale/$key has a translation marker");
+                if (strpos($locale, 'en_') !== 0 && strpos($key, 'login') === 0) {
+                    localization_check($translated !== $value, "$locale/$key still contains the English login text");
+                }
             }
         }
     }

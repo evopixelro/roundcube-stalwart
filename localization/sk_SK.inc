@@ -126,3 +126,9 @@ $messages['invalidprefix'] = 'Použite 1 až 64 písmen, číslic alebo podčiar
 $messages['invalidsitedomain'] = 'Zadajte doménu lokality, napríklad shop.example.com, bez https:// alebo cesty.';
 $messages['maskedexpired'] = 'Adresu, ktorej platnosť vypršala, nie je možné znova aktivovať. Vygenerujte nový.';
 $messages['enterpriserequired'] = 'Táto funkcia vyžaduje licenciu Enterprise na poštovom serveri. Kontaktujte svojho správcu.';
+
+$labels['loginotphelp'] = 'Na dokončenie prihlásenia zadajte šesťmiestny kód z overovacej aplikácie.';
+$labels['loginverify'] = 'Overiť a prihlásiť sa';
+$messages['loginconfigurationerror'] = 'Prihlasovanie nie je správne nastavené. Kontaktujte správcu.';
+$messages['loginexpired'] = 'Platnosť vášho pokusu o prihlásenie vypršala. Zadajte znova používateľské meno a heslo.';
+$messages['loginresponseerror'] = 'Poštový server vrátil neočakávanú odpoveď. Skúste to znova neskôr.';

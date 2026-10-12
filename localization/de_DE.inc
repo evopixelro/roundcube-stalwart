@@ -126,3 +126,9 @@ $messages['invalidprefix'] = 'Verwenden Sie 1 bis 64 Buchstaben, Ziffern oder Un
 $messages['invalidsitedomain'] = 'Geben Sie eine Site-Domäne ein, zum Beispiel shop.example.com, ohne https:// oder einen Pfad.';
 $messages['maskedexpired'] = 'Eine abgelaufene Adresse kann nicht reaktiviert werden. Generieren Sie ein neues.';
 $messages['enterpriserequired'] = 'Für diese Funktion ist eine Enterprise-Lizenz auf dem Mailserver erforderlich. Kontaktieren Sie Ihren Administrator.';
+
+$labels['loginotphelp'] = 'Geben Sie den sechsstelligen Code aus Ihrer Authentifizierungs-App ein, um die Anmeldung abzuschließen.';
+$labels['loginverify'] = 'Bestätigen und anmelden';
+$messages['loginconfigurationerror'] = 'Die Anmeldung ist nicht richtig konfiguriert. Wenden Sie sich an Ihren Administrator.';
+$messages['loginexpired'] = 'Ihr Anmeldeversuch ist abgelaufen. Geben Sie Ihren Benutzernamen und Ihr Passwort erneut ein.';
+$messages['loginresponseerror'] = 'Der Mailserver hat eine unerwartete Antwort zurückgegeben. Versuchen Sie es später erneut.';

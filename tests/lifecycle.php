@@ -41,6 +41,7 @@ class rcmail extends rcube
     public $output;
     public $session;
     public $user;
+    public $task = 'settings';
     public function get_user_name() { return 'user@example.test'; }
     public function read_localization($path) { return []; }
 }
@@ -79,6 +80,8 @@ function lifecycle(array $values = [], array $password_config = [])
         public function load_from_file($file) { return true; }
     };
     $rc->output = new class {
+        public $ajax_call = false;
+        public function get_env($key) { return false; }
         public function add_label(...$labels) {}
     };
     $rc->session = new class {
@@ -99,7 +102,7 @@ function lifecycle(array $values = [], array $password_config = [])
 $_SESSION = ['storage_host' => 'mail.example.test'];
 list($plugin, $api) = lifecycle();
 lifecycle_check($plugin->ID === 'stalwart', 'Entry class matches the Composer installation directory');
-lifecycle_check($plugin->task === 'settings' && $plugin->noajax && $plugin->noframe, 'Plugin only runs in native settings requests');
+lifecycle_check($plugin->task === null && !$plugin->noajax && !$plugin->noframe, 'Token lifecycle is available in all authenticated requests');
 lifecycle_check(!$api->actions && !$api->assets && !$api->loads, 'Disabled defaults do not register actions, assets or a password provider');
 
 $enabled = ['stalwart_enabled' => true, 'stalwart_api_url' => 'https://mail.example.test/jmap'];

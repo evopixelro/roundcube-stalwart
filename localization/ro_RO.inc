@@ -131,3 +131,9 @@ $messages['invalidprefix'] = 'Folosește între 1 și 64 de litere, cifre sau un
 $messages['invalidsitedomain'] = 'Introdu domeniul site-ului, de exemplu magazin.example.com, fără https:// sau cale.';
 $messages['maskedexpired'] = 'O adresă expirată nu poate fi reactivată. Generează una nouă.';
 $messages['enterpriserequired'] = 'Această funcție necesită o licență Enterprise pe serverul de e-mail. Contactează administratorul.';
+
+$labels['loginotphelp'] = 'Introdu codul de șase cifre din aplicația de autentificare pentru a finaliza conectarea.';
+$labels['loginverify'] = 'Verifică și conectează-te';
+$messages['loginconfigurationerror'] = 'Autentificarea nu este configurată corect. Contactează administratorul.';
+$messages['loginexpired'] = 'Încercarea de autentificare a expirat. Introdu din nou utilizatorul și parola.';
+$messages['loginresponseerror'] = 'Serverul de e-mail a returnat un răspuns neașteptat. Încearcă din nou mai târziu.';

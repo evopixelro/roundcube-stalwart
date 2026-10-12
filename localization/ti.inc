@@ -126,3 +126,9 @@ $messages['invalidprefix'] = 'ካብ 1 ክሳብ 64 ፊደላት፡ ኣሃዛት
 $messages['invalidsitedomain'] = 'ኣብ ሓደ ሳይት ዶመይን ንኣብነት shop.example.com ብዘይ https:// ወይ መንገዲ ኣእቱ።';
 $messages['maskedexpired'] = 'ግዜኡ ዝሓለፎ ኣድራሻ ዳግማይ ክነጥፍ ኣይክእልን። ሓድሽ ምፍጣር።';
 $messages['enterpriserequired'] = 'እዚ ባህሪ እዚ ኣብ ፖስታ ሰርቨር ናይ ኢንተርፕራይዝ ፍቓድ የድልዮ። ምስ ኣመሓዳሪኻ ርኸብ።';
+
+$labels['loginotphelp'] = 'እቲ ምእታው ንምዝዛም፡ ካብ መተግበሪ መረጋገጺኹም እቲ ሽዱሽተ ኣሃዝ ዘለዎ ኮድ ኣእትዉ።';
+$labels['loginverify'] = 'ኣረጋግጹ እሞ እተዉ';
+$messages['loginconfigurationerror'] = 'ምእታው ብትኽክል ኣይተዋደደን። ንኣመሓዳሪኹም ተወከሱ።';
+$messages['loginexpired'] = 'ናይ ምእታው ፈተነኹም ግዜኡ ሓሊፉ። ስም ተጠቃሚኹምን ቃለ ምስጢርኩምን እንደገና ኣእትዉ።';
+$messages['loginresponseerror'] = 'ሰርቨር ኢመይል ዘይተጸበናዮ ምላሽ መሊሱ። ጸኒሕኩም እንደገና ፈትኑ።';

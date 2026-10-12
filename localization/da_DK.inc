@@ -126,3 +126,9 @@ $messages['invalidprefix'] = 'Brug 1 til 64 bogstaver, cifre eller understregnin
 $messages['invalidsitedomain'] = 'Indtast et webstedsdomæne, for eksempel shop.example.com, uden https:// eller en sti.';
 $messages['maskedexpired'] = 'En udløbet adresse kan ikke genaktiveres. Generer en ny.';
 $messages['enterpriserequired'] = 'Denne funktion kræver en Enterprise-licens på mailserveren. Kontakt din administrator.';
+
+$labels['loginotphelp'] = 'Indtast den sekscifrede kode fra din godkendelsesapp for at fuldføre login.';
+$labels['loginverify'] = 'Bekræft og log ind';
+$messages['loginconfigurationerror'] = 'Login er ikke konfigureret korrekt. Kontakt din administrator.';
+$messages['loginexpired'] = 'Dit loginforsøg er udløbet. Indtast dit brugernavn og din adgangskode igen.';
+$messages['loginresponseerror'] = 'Mailserveren returnerede et uventet svar. Prøv igen senere.';

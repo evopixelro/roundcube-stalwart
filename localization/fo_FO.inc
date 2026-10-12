@@ -126,3 +126,9 @@ $messages['invalidprefix'] = 'Brúka 1 til 64 bókstavir, siffur ella undirstrik
 $messages['invalidsitedomain'] = 'Skriva eitt síðuøki, til dømis shop.example.com, uttan https:// ella slóð.';
 $messages['maskedexpired'] = 'Ein útgingin adressa kann ikki endurvirkjast. Generera eitt nýtt.';
 $messages['enterpriserequired'] = 'Hesin eginleikin krevur Enterprise loyvi á postambætaranum. Set teg í samband við tín umsitaran.';
+
+$labels['loginotphelp'] = 'Skriva seksstovna kotuna úr tíni váttanarapp fyri at gera innritanina lidna.';
+$labels['loginverify'] = 'Vátta og rita inn';
+$messages['loginconfigurationerror'] = 'Innritanin er ikki rætt sett upp. Set teg í samband við umsitaran.';
+$messages['loginexpired'] = 'Tín innritanarroynd er útgingin. Skriva brúkaranavn og loyniorð umaftur.';
+$messages['loginresponseerror'] = 'Teldupostservarin sendi eitt óvæntað svar. Royn aftur seinni.';

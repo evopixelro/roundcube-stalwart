@@ -126,3 +126,9 @@ $messages['invalidprefix'] = 'Uzu 1 ĝis 64 literojn, ciferojn aŭ substrekojn, 
 $messages['invalidsitedomain'] = 'Enigu retejan domajnon, ekzemple shop.example.com, sen https:// aŭ vojo.';
 $messages['maskedexpired'] = 'Eksvalidiĝinta adreso ne povas esti reaktivigita. Generu novan.';
 $messages['enterpriserequired'] = 'Tiu ĉi funkcio postulas Enterprise-licencon sur la poŝtservilo. Kontaktu vian administranton.';
+
+$labels['loginotphelp'] = 'Enigu la sesciferan kodon el via aŭtentikiga aplikaĵo por fini la ensaluton.';
+$labels['loginverify'] = 'Kontroli kaj ensaluti';
+$messages['loginconfigurationerror'] = 'Ensaluto ne estas ĝuste agordita. Kontaktu vian administranton.';
+$messages['loginexpired'] = 'Via ensalutprovo eksvalidiĝis. Enigu viajn uzantnomon kaj pasvorton denove.';
+$messages['loginresponseerror'] = 'La retpoŝta servilo liveris neatenditan respondon. Provu denove poste.';

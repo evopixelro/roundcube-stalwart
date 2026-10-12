@@ -126,3 +126,9 @@ $messages['invalidprefix'] = '문자나 숫자로 시작하여 1~64자의 문자
 $messages['invalidsitedomain'] = 'https:// 또는 경로 없이 사이트 도메인(예: shop.example.com)을 입력하세요.';
 $messages['maskedexpired'] = '만료된 주소는 다시 활성화할 수 없습니다. 새로운 것을 생성하십시오.';
 $messages['enterpriserequired'] = '이 기능을 사용하려면 메일 서버에 Enterprise 라이선스가 필요합니다. 관리자에게 문의하세요.';
+
+$labels['loginotphelp'] = '로그인을 완료하려면 인증 앱의 6자리 코드를 입력하세요.';
+$labels['loginverify'] = '확인하고 로그인';
+$messages['loginconfigurationerror'] = '로그인이 올바르게 구성되지 않았습니다. 관리자에게 문의하세요.';
+$messages['loginexpired'] = '로그인 시도가 만료되었습니다. 사용자 이름과 비밀번호를 다시 입력하세요.';
+$messages['loginresponseerror'] = '메일 서버가 예상하지 못한 응답을 반환했습니다. 나중에 다시 시도하세요.';

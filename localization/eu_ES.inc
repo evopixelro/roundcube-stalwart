@@ -126,3 +126,9 @@ $messages['invalidprefix'] = 'Erabili 1etik 64ra hizki, zifra edo azpimarra, let
 $messages['invalidsitedomain'] = 'Sartu guneko domeinu bat, adibidez shop.example.com, https:// edo biderik gabe.';
 $messages['maskedexpired'] = 'Iraungitako helbide bat ezin da berriro aktibatu. Sortu berri bat.';
 $messages['enterpriserequired'] = 'Eginbide honek Enterprise lizentzia behar du posta zerbitzarian. Jarri harremanetan zure administratzailearekin.';
+
+$labels['loginotphelp'] = 'Sartu autentifikazio-aplikazioko sei digituko kodea saioa hasten amaitzeko.';
+$labels['loginverify'] = 'Egiaztatu eta hasi saioa';
+$messages['loginconfigurationerror'] = 'Saio-hasiera ez dago behar bezala konfiguratuta. Jarri harremanetan administratzailearekin.';
+$messages['loginexpired'] = 'Saioa hasteko saiakera iraungi egin da. Sartu berriro erabiltzaile-izena eta pasahitza.';
+$messages['loginresponseerror'] = 'Posta-zerbitzariak espero gabeko erantzuna itzuli du. Saiatu berriro geroago.';

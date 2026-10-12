@@ -126,3 +126,9 @@ $messages['invalidprefix'] = 'Use de 1 a 64 letras, díxitos ou guións baixos, 
 $messages['invalidsitedomain'] = 'Introduza un dominio do sitio, por exemplo shop.example.com, sen https:// nin unha ruta.';
 $messages['maskedexpired'] = 'Non se pode reactivar un enderezo caducado. Xera un novo.';
 $messages['enterpriserequired'] = 'Esta función require unha licenza Enterprise no servidor de correo. Contacta co teu administrador.';
+
+$labels['loginotphelp'] = 'Introduce o código de seis díxitos da túa aplicación de autenticación para completar o inicio de sesión.';
+$labels['loginverify'] = 'Verificar e iniciar sesión';
+$messages['loginconfigurationerror'] = 'O inicio de sesión non está configurado correctamente. Contacta co administrador.';
+$messages['loginexpired'] = 'O teu intento de inicio de sesión caducou. Introduce de novo o nome de usuario e o contrasinal.';
+$messages['loginresponseerror'] = 'O servidor de correo devolveu unha resposta inesperada. Téntao de novo máis tarde.';

@@ -126,3 +126,9 @@ $messages['invalidprefix'] = 'Bruk 1 til 64 bokstaver, sifre eller understreker,
 $messages['invalidsitedomain'] = 'Angi et nettsteddomene, for eksempel shop.example.com, uten https:// eller en bane.';
 $messages['maskedexpired'] = 'En utløpt adresse kan ikke reaktiveres. Generer en ny.';
 $messages['enterpriserequired'] = 'Denne funksjonen krever en Enterprise-lisens på e-postserveren. Kontakt administratoren din.';
+
+$labels['loginotphelp'] = 'Skriv inn den sekssifrede koden fra autentiseringsappen for å fullføre innloggingen.';
+$labels['loginverify'] = 'Bekreft og logg inn';
+$messages['loginconfigurationerror'] = 'Innloggingen er ikke riktig konfigurert. Kontakt administratoren.';
+$messages['loginexpired'] = 'Innloggingsforsøket ditt har utløpt. Skriv inn brukernavn og passord på nytt.';
+$messages['loginresponseerror'] = 'E-posttjeneren returnerte et uventet svar. Prøv igjen senere.';

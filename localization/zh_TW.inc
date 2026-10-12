@@ -126,3 +126,9 @@ $messages['invalidprefix'] = '使用 1 至 64 個字母、數字或底線，以�
 $messages['invalidsitedomain'] = '輸入網站網域，例如 shop.example.com，不含 https:// 或路徑。';
 $messages['maskedexpired'] = '過期位址無法重新啟動。產生一個新的。';
 $messages['enterpriserequired'] = '此功能需要郵件伺服器上的企業許可證。請聯絡您的管理員。';
+
+$labels['loginotphelp'] = '請輸入驗證應用程式中的六位數驗證碼以完成登入。';
+$labels['loginverify'] = '驗證並登入';
+$messages['loginconfigurationerror'] = '登入設定不正確。請聯絡管理員。';
+$messages['loginexpired'] = '您的登入嘗試已過期。請重新輸入使用者名稱和密碼。';
+$messages['loginresponseerror'] = '郵件伺服器傳回非預期的回應。請稍後再試。';

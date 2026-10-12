@@ -126,3 +126,9 @@ $messages['invalidprefix'] = 'Uporabite od 1 do 64 črk, števk ali podčrtajev,
 $messages['invalidsitedomain'] = 'Vnesite domeno spletnega mesta, na primer shop.example.com, brez https:// ali poti.';
 $messages['maskedexpired'] = 'Naslova, ki je potekel, ni mogoče ponovno aktivirati. Ustvari novo.';
 $messages['enterpriserequired'] = 'Ta funkcija zahteva licenco Enterprise na poštnem strežniku. Obrnite se na skrbnika.';
+
+$labels['loginotphelp'] = 'Za dokončanje prijave vnesite šestmestno kodo iz aplikacije za preverjanje pristnosti.';
+$labels['loginverify'] = 'Potrdi in se prijavi';
+$messages['loginconfigurationerror'] = 'Prijava ni pravilno nastavljena. Obrnite se na skrbnika.';
+$messages['loginexpired'] = 'Vaš poskus prijave je potekel. Znova vnesite uporabniško ime in geslo.';
+$messages['loginresponseerror'] = 'Poštni strežnik je vrnil nepričakovan odgovor. Poskusite znova pozneje.';

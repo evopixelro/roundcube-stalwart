@@ -126,3 +126,9 @@ $messages['invalidprefix'] = 'Använd 1 till 64 bokstäver, siffror eller unders
 $messages['invalidsitedomain'] = 'Ange en webbplatsdomän, till exempel shop.example.com, utan https:// eller en sökväg.';
 $messages['maskedexpired'] = 'En utgången adress kan inte återaktiveras. Skapa en ny.';
 $messages['enterpriserequired'] = 'Denna funktion kräver en Enterprise-licens på e-postservern. Kontakta din administratör.';
+
+$labels['loginotphelp'] = 'Ange den sexsiffriga koden från din autentiseringsapp för att slutföra inloggningen.';
+$labels['loginverify'] = 'Verifiera och logga in';
+$messages['loginconfigurationerror'] = 'Inloggningen är inte korrekt konfigurerad. Kontakta din administratör.';
+$messages['loginexpired'] = 'Ditt inloggningsförsök har gått ut. Ange ditt användarnamn och lösenord igen.';
+$messages['loginresponseerror'] = 'E-postservern returnerade ett oväntat svar. Försök igen senare.';

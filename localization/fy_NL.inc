@@ -126,3 +126,9 @@ $messages['invalidprefix'] = 'Brûk 1 oan 64 letters, sifers of underscores, beg
 $messages['invalidsitedomain'] = 'Fier in sidedomein yn, bygelyks shop.example.com, sûnder https:// of in paad.';
 $messages['maskedexpired'] = 'In ferrûn adres kin net opnij aktivearre wurde. Generearje in nij.';
 $messages['enterpriserequired'] = 'Dizze funksje fereasket in Enterprise lisinsje op de mail tsjinner. Nim kontakt op mei jo behearder.';
+
+$labels['loginotphelp'] = 'Fier de koade fan seis sifers út jo autentikaasje-app yn om it oanmelden ôf te meitsjen.';
+$labels['loginverify'] = 'Ferifiearje en oanmelde';
+$messages['loginconfigurationerror'] = 'It oanmelden is net goed ynsteld. Nim kontakt op mei jo behearder.';
+$messages['loginexpired'] = 'Jo oanmeldpoging is ferrûn. Fier jo brûkersnamme en wachtwurd opnij yn.';
+$messages['loginresponseerror'] = 'De e-mailtsjinner joech in ûnferwachte antwurd. Besykje it letter opnij.';

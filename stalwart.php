@@ -5,14 +5,15 @@
  */
 class stalwart extends rcube_plugin
 {
-    public $task = 'settings';
-    public $noajax = true;
-    public $noframe = true;
+    public $task = null;
+    public $noajax = false;
+    public $noframe = false;
 
     private $rc;
     private $enabled;
     private $error;
     private $pages = [];
+    private $login;
 
     /**
      * Register enabled settings actions and their native Roundcube UI resources.
@@ -26,6 +27,16 @@ class stalwart extends rcube_plugin
         $this->rc = rcmail::get_instance();
         $this->load_config();
         $this->add_texts('localization/');
+
+        if ($this->rc->config->get('stalwart_enabled') && $this->rc->config->get('stalwart_login_enabled')) {
+            require_once __DIR__ . '/stalwart_auth.php';
+            require_once __DIR__ . '/stalwart_oauth.php';
+            require_once __DIR__ . '/stalwart_login.php';
+            $this->login = new rcube_stalwart_login($this);
+        }
+        if ($this->rc->task !== 'settings' || $this->rc->output->ajax_call || $this->rc->output->get_env('framed')) {
+            return;
+        }
 
         // Wait for other plugins to load their configuration, regardless of plugin order.
         $this->add_hook('startup', [$this, 'startup']);

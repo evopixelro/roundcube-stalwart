@@ -126,3 +126,9 @@ $messages['invalidprefix'] = 'Përdorni 1 deri në 64 shkronja, shifra ose nënv
 $messages['invalidsitedomain'] = 'Futni një domen të sajtit, për shembull shop.example.com, pa https:// ose një shteg.';
 $messages['maskedexpired'] = 'Një adresë e skaduar nuk mund të riaktivizohet. Gjeneroni një të re.';
 $messages['enterpriserequired'] = 'Ky funksion kërkon një licencë Enterprise në serverin e postës. Kontaktoni administratorin tuaj.';
+
+$labels['loginotphelp'] = 'Shkruani kodin gjashtëshifror nga aplikacioni juaj i autentikimit për të përfunduar hyrjen.';
+$labels['loginverify'] = 'Verifiko dhe hyr';
+$messages['loginconfigurationerror'] = 'Hyrja nuk është konfiguruar saktë. Kontaktoni administratorin tuaj.';
+$messages['loginexpired'] = 'Përpjekja juaj për hyrje ka skaduar. Shkruani sërish emrin e përdoruesit dhe fjalëkalimin.';
+$messages['loginresponseerror'] = 'Shërbyesi i postës ktheu një përgjigje të papritur. Provoni sërish më vonë.';

@@ -126,3 +126,9 @@ $messages['invalidprefix'] = 'Gebruik 1 tot 64 letters, cijfers of onderstreping
 $messages['invalidsitedomain'] = 'Voer een sitedomein in, bijvoorbeeld shop.example.com, zonder https:// of pad.';
 $messages['maskedexpired'] = 'Een verlopen adres kan niet opnieuw worden geactiveerd. Genereer een nieuwe.';
 $messages['enterpriserequired'] = 'Voor deze functie is een Enterprise-licentie op de mailserver vereist. Neem contact op met uw beheerder.';
+
+$labels['loginotphelp'] = 'Voer de zescijferige code uit uw authenticator-app in om het aanmelden te voltooien.';
+$labels['loginverify'] = 'Verifiëren en aanmelden';
+$messages['loginconfigurationerror'] = 'Aanmelden is niet correct geconfigureerd. Neem contact op met uw beheerder.';
+$messages['loginexpired'] = 'Uw aanmeldpoging is verlopen. Voer uw gebruikersnaam en wachtwoord opnieuw in.';
+$messages['loginresponseerror'] = 'De mailserver gaf een onverwacht antwoord. Probeer het later opnieuw.';
