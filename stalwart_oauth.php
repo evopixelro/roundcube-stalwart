@@ -22,6 +22,7 @@ class rcube_stalwart_oauth extends rcmail_oauth
     {
         $token['expires'] = time() + $token['expires_in'] - min(60, (int) ($token['expires_in'] / 2));
         $token['stalwart_login'] = true;
+        $token['stalwart_server'] = $this->client->binding();
         // Both transport and refresh credentials use Roundcube's session encryption.
         $token['access_token'] = $this->rcmail->encrypt($token['access_token']);
         if (isset($token['refresh_token'])) {
@@ -35,6 +36,9 @@ class rcube_stalwart_oauth extends rcmail_oauth
     public function refresh_access_token(array $token)
     {
         try {
+            if (($token['stalwart_server'] ?? '') !== $this->client->binding()) {
+                throw new RuntimeException('loginexpired');
+            }
             $updated = $this->client->refresh($this->rcmail->decrypt($token['refresh_token'] ?? ''));
             $authorization = 'Bearer ' . $updated['access_token'];
             $updated = $this->prepare($updated, $token['identity']);
@@ -52,6 +56,11 @@ class rcube_stalwart_oauth extends rcmail_oauth
 
     protected function check_token_validity($token)
     {
+        if (($token['stalwart_server'] ?? '') !== $this->client->binding()) {
+            $this->rcmail->kill_session();
+            $this->rcmail->output->redirect(['_task' => 'login']);
+            return false;
+        }
         if (isset($token['expires']) && $token['expires'] <= time()) {
             if ($this->refresh_access_token($token) === false) {
                 $this->rcmail->output->redirect(['_task' => 'login']);

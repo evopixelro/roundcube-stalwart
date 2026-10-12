@@ -1,5 +1,7 @@
 <?php
 
+require_once __DIR__ . '/stalwart_config.php';
+
 /**
  * User-scoped Stalwart 0.16 account API client.
  * No administrator credentials or account IDs are accepted from the browser.
@@ -60,7 +62,12 @@ class rcube_stalwart_client
             throw new RuntimeException('configurationerror');
         }
 
+        rcube_stalwart_config::check_session($rc);
+
         if (!empty($_SESSION['oauth_token'])) {
+            if (!empty($_SESSION['oauth_token']['stalwart_login']) && !$rc->oauth->is_token_valid()) {
+                throw new RuntimeException('authenticationerror');
+            }
             // In Roundcube 1.6 this method reports a successful refresh, not an unexpired token.
             if (isset($_SESSION['oauth_token']['expires']) && $_SESSION['oauth_token']['expires'] < time()
                 && !$rc->oauth->is_token_valid()
@@ -93,12 +100,12 @@ class rcube_stalwart_client
         $result = $this->request('x:AccountPassword/get', ['ids' => ['singleton']]);
         $account = $result['list'][0] ?? null;
         if (!is_array($account) || ($account['id'] ?? '') !== 'singleton'
-            || !isset($account['otpAuth']) || !is_array($account['otpAuth']) || !array_key_exists('otpUrl', $account['otpAuth'])
+            || !isset($account['otpAuth']) || !is_array($account['otpAuth'])
         ) {
             throw new RuntimeException('unsupportedaccount');
         }
 
-        $url = $account['otpAuth']['otpUrl'];
+        $url = $account['otpAuth']['otpUrl'] ?? null;
         if ($url !== null && (!is_string($url) || $url === '')) {
             throw new RuntimeException('responseerror');
         }
@@ -133,7 +140,8 @@ class rcube_stalwart_client
             'ids' => null,
             'properties' => ['id', 'description', 'createdAt', 'expiresAt'],
         ]);
-        $items = $this->items($result);
+        // Enumeration also reports non-application credentials in notFound.
+        $items = $this->items($result, true);
         foreach ($items as $item) {
             if (!is_string($item['description'] ?? null)) {
                 throw new RuntimeException('responseerror');
@@ -276,7 +284,7 @@ class rcube_stalwart_client
         }
         // Preserve other aliases and every unrelated account property.
         $result = $this->request('x:Account/set', ['update' => [
-            $account['id'] => ['aliases' => array_values($aliases)],
+            $account['id'] => ['aliases' => (object) array_values($aliases)],
         ]]);
         $this->check_updated($result, $account['id']);
     }
@@ -404,7 +412,9 @@ class rcube_stalwart_client
             'accountId' => $settings['accountId'], 'filter' => ['accountId' => $settings['accountId']],
             'position' => $page * 20, 'limit' => 21,
         ]);
-        if (!is_array($result['ids'] ?? null) || count($result['ids']) > 21) {
+        if (($result['accountId'] ?? null) !== $settings['accountId']
+            || !is_array($result['ids'] ?? null) || count($result['ids']) > 21
+        ) {
             throw new RuntimeException('responseerror');
         }
         foreach ($result['ids'] as $id) {
@@ -415,12 +425,19 @@ class rcube_stalwart_client
         $ids = array_slice($result['ids'], 0, 20);
         $items = [];
         if ($ids) {
-            $items = $this->items($this->request('x:' . $type . '/get', [
+            $objects = $this->request('x:' . $type . '/get', [
                 'accountId' => $settings['accountId'], 'ids' => $ids,
                 'properties' => array_merge(['id', 'accountId'], $properties),
-            ]));
+            ]);
+            if (($objects['accountId'] ?? null) !== $settings['accountId']) {
+                throw new RuntimeException('responseerror');
+            }
+            $items = $this->items($objects);
             foreach ($items as $item) {
-                if (($item['accountId'] ?? null) !== $settings['accountId'] || !in_array($item['id'], $ids, true)) {
+                // Account-scoped responses omit the owner on individual objects.
+                if ((isset($item['accountId']) && $item['accountId'] !== $settings['accountId'])
+                    || !in_array($item['id'], $ids, true)
+                ) {
                     throw new RuntimeException('responseerror');
                 }
                 $this->validate_resource($type, $item);
@@ -443,7 +460,9 @@ class rcube_stalwart_client
             throw new RuntimeException('itemnotfound');
         }
         $item = $this->items($result)[0] ?? null;
-        if (!$item || $item['id'] !== $id || ($item['accountId'] ?? null) !== $account_id) {
+        if (($result['accountId'] ?? null) !== $account_id || !$item || $item['id'] !== $id
+            || (isset($item['accountId']) && $item['accountId'] !== $account_id)
+        ) {
             throw new RuntimeException('itemnotfound');
         }
         if (isset($item['expiresAt']) && (!is_string($item['expiresAt']) || strtotime($item['expiresAt']) === false)) {
@@ -516,9 +535,9 @@ class rcube_stalwart_client
         return trim($description);
     }
 
-    private function items(array $result)
+    private function items(array $result, $allow_not_found = false)
     {
-        if (!is_array($result['list'] ?? null) || !empty($result['notFound'])) {
+        if (!is_array($result['list'] ?? null) || (!$allow_not_found && !empty($result['notFound']))) {
             throw new RuntimeException('responseerror');
         }
         foreach ($result['list'] as $item) {

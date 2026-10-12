@@ -59,6 +59,7 @@ abstract class rcube_stalwart_page
 
     protected function form($fields, $content, $id = null)
     {
+        $fields['_stalwart_server'] = rcube_stalwart_config::binding($this->rc);
         $hidden = new html_hiddenfield();
         foreach ($fields as $name => $value) {
             $hidden->add(['name' => $name, 'value' => $value]);

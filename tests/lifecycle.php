@@ -7,6 +7,7 @@ if (!is_file($base)) {
     throw new RuntimeException('Set ROUNDCUBE_ROOT to a development Roundcube installation.');
 }
 require $base;
+require $roundcube_root . '/program/lib/Roundcube/rcube_utils.php';
 require dirname(__DIR__) . '/stalwart.php';
 
 set_error_handler(function ($level, $message, $file, $line) {
@@ -72,11 +73,13 @@ class stalwart_lifecycle_api
 
 function lifecycle(array $values = [], array $password_config = [])
 {
+    unset($_SESSION['stalwart_server']);
     $rc = new rcmail();
     $rc->config = new class($values) {
         public $values;
-        public function __construct($values) { $this->values = $values; }
+        public function __construct($values) { $this->values = $values + ['imap_host' => 'mail.example.test']; }
         public function get($key, $default = null) { return $this->values[$key] ?? $default; }
+        public function set($key, $value) { $this->values[$key] = $value; }
         public function load_from_file($file) { return true; }
     };
     $rc->output = new class {

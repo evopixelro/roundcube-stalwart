@@ -1,5 +1,7 @@
 <?php
 
+require_once __DIR__ . '/stalwart_config.php';
+
 /**
  * Stalwart authorization-code client for the native Webmail login form.
  */
@@ -10,6 +12,7 @@ class rcube_stalwart_auth
     private $client_secret;
     private $redirect_uri;
     private $http;
+    private $host;
 
     public function __construct($config, $http = null)
     {
@@ -30,19 +33,25 @@ class rcube_stalwart_auth
         }
         $this->client_id = $config->get('stalwart_login_client_id', '');
         $this->client_secret = $config->get('stalwart_login_client_secret', '');
-        $host = $config->get('imap_host');
+        $hosts = rcube_stalwart_config::hosts($config);
+        $this->host = $config->get('stalwart_selected_host', count($hosts) === 1 ? $hosts[0] : null);
         if (!is_string($this->client_id) || $this->client_id === '' || strlen($this->client_id) > 2048
             || !is_string($this->client_secret)
-            || !(is_string($host) && $host !== '' || is_array($host) && count($host) === 1)
+            || !is_string($this->host) || !in_array($this->host, $hosts, true)
         ) {
             throw new RuntimeException('loginconfigurationerror');
         }
         $this->http = $http ?: new \GuzzleHttp\Client();
     }
 
+    public function host()
+    {
+        return $this->host;
+    }
+
     public function binding()
     {
-        return hash('sha256', json_encode([$this->issuer, $this->client_id, $this->redirect_uri]));
+        return hash('sha256', json_encode([$this->issuer, $this->client_id, $this->client_secret, $this->redirect_uri, $this->host]));
     }
 
     public function options()

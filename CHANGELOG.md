@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.1.0 - 2026-10-12
+
+- Configure account settings and embedded login separately for each IMAP server.
+- Keep unlisted servers outside the plugin and resolve settings from the authenticated mailbox.
+- Bind two-factor challenges, tokens and settings forms to their original server and account.
+- Retain single-server configuration and compatibility with standard Roundcube skins and APIs.
+- Handle empty OTP settings, mixed credential enumeration and account-scoped resource responses from Stalwart.
+- Serialize alias updates as keyed objects, including removal of the last alias.
+- Validate login, account security, public keys, OAuth refresh, IMAP and SMTP against Stalwart 0.16.26.
+
 ## 1.0.6 - 2026-10-12
 
 - Complete native login messages in all 80 language catalogs.

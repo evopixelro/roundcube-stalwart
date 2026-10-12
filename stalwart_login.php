@@ -22,7 +22,7 @@ class rcube_stalwart_login
         $plugin->add_hook('loginform_content', [$this, 'form']);
         try {
             // External redirect login and the embedded flow are alternative modes.
-            if ($this->rc->config->get('oauth_provider')) {
+            if ($this->rc->oauth && $this->rc->oauth->is_enabled()) {
                 throw new RuntimeException('loginconfigurationerror');
             }
             $this->client = new rcube_stalwart_auth($this->rc->config);
@@ -45,7 +45,7 @@ class rcube_stalwart_login
         if ($args['action'] === 'plugin.stalwart-login-cancel') {
             $this->rc->request_security_check(rcube_utils::INPUT_GET);
             $this->clear();
-            $this->rc->output->redirect(['_task' => 'login']);
+            $this->rc->output->redirect(['_task' => 'login', '_host' => $this->client ? $this->client->host() : null]);
         }
         if ($args['action'] !== 'login') {
             return $args;
@@ -96,11 +96,11 @@ class rcube_stalwart_login
                     $_SESSION['stalwart_login'] = [
                         'username' => $username, 'password' => $encrypted, 'verifier' => $verifier,
                         'flow' => bin2hex(random_bytes(32)), 'binding' => $this->client->binding(),
-                        'expires' => time() + 300, 'attempts' => 5,
+                        'expires' => time() + 300, 'attempts' => 5, 'host' => $this->client->host(),
                         'url' => rcube_utils::get_input_string('_url', rcube_utils::INPUT_POST),
                     ];
                     unset($password, $_POST['_pass']);
-                    $this->rc->output->redirect(['_task' => 'login', '_action' => 'plugin.stalwart-login']);
+                    $this->rc->output->redirect(['_task' => 'login', '_action' => 'plugin.stalwart-login', '_host' => $this->client->host()]);
                 }
                 unset($password);
             }
@@ -113,7 +113,7 @@ class rcube_stalwart_login
             $this->error = in_array($message, $allowed, true) ? $message : 'connectionerror';
             if ($flow && $this->pending() && in_array($this->error, ['credentialserror', 'invalidcode', 'connectionerror'], true)) {
                 $_SESSION['stalwart_login_notice'] = $this->error;
-                $this->rc->output->redirect(['_task' => 'login', '_action' => 'plugin.stalwart-login']);
+                $this->rc->output->redirect(['_task' => 'login', '_action' => 'plugin.stalwart-login', '_host' => $this->client->host()]);
             }
             $this->clear();
         }
@@ -134,6 +134,7 @@ class rcube_stalwart_login
             $args['error'] = 'stalwart.' . ($this->error ?: 'loginexpired');
             return $args;
         }
+        $args['host'] = $this->client->host();
         $args['user'] = $this->authorization['username'];
         $args['pass'] = 'Bearer ' . $this->authorization['token']['access_token'];
         $this->rc->config->set('imap_auth_type', 'XOAUTH2');
@@ -186,6 +187,7 @@ class rcube_stalwart_login
                 'content' => $code->show()],
         ];
         $args['hidden']['stalwart'] = (new html_hiddenfield(['name' => '_stalwart_flow', 'value' => $pending['flow']]))->show();
+        $args['hidden']['host'] = (new html_hiddenfield(['name' => '_host', 'value' => $pending['host']]))->show();
         $args['hidden']['url'] = (new html_hiddenfield(['name' => '_url', 'value' => $pending['url']]))->show();
         $args['hidden']['help'] = html::p(['class' => 'stalwart-login-help'], rcube::Q($this->plugin->gettext('loginotphelp')));
         $args['buttons'] = [
@@ -194,7 +196,7 @@ class rcube_stalwart_login
             ], rcube::Q($this->plugin->gettext('loginverify')))],
             'cancel' => ['outterclass' => 'stalwart-login-cancel', 'content' => html::a([
                 'class' => 'button', 'href' => $this->rc->url(['_task' => 'login',
-                    '_action' => 'plugin.stalwart-login-cancel', '_token' => $this->rc->get_request_token()]),
+                    '_action' => 'plugin.stalwart-login-cancel', '_host' => $pending['host'], '_token' => $this->rc->get_request_token()]),
             ], rcube::Q($this->rc->gettext('back')))],
         ];
         return $args;
