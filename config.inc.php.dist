@@ -6,9 +6,22 @@
 $config['stalwart_enabled'] = false;
 $config['stalwart_api_url'] = '';
 
+// Settings per IMAP server, using exact addresses from Roundcube's imap_host.
+// Unlisted servers do not use this plugin. Null keeps single-server settings.
+// Multiple IMAP servers require a map; API URLs and client credentials are not inherited.
+// Feature flags inherit the defaults below unless overridden in an entry.
+// $config['stalwart_hosts'] = [
+//     'ssl://mail.example.org:993' => [
+//         'api_url' => 'https://mail.example.org/jmap',
+//         'twofactor_enabled' => true,
+//         'password_driver' => 'stalwart',
+//     ],
+// ];
+$config['stalwart_hosts'] = null;
+
 // Optional native login with a second Stalwart TOTP step. Requires Stalwart 0.16.26.
 // Register a dedicated OAuth client and its exact HTTPS redirect URI on Stalwart.
-// Use this mode without Roundcube's separate oauth_provider redirect login.
+// Use this mode only on servers without active Roundcube redirect OAuth.
 $config['stalwart_login_enabled'] = false;
 $config['stalwart_login_client_id'] = '';
 $config['stalwart_login_client_secret'] = '';

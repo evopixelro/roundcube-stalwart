@@ -3,9 +3,8 @@
 Manage Stalwart account security and email addresses from Roundcube Settings.
 An independent community plugin by **EvoPixel**, licensed under **GPL-3.0-or-later**.
 
-The plugin has automated API checks and isolated browser tests. The
-Stalwart API contract was checked against server source, but a live Stalwart
-deployment has not yet been validated. Test on a staging account before deployment.
+Version 1.1.0 was integration-tested against Stalwart 0.16.26 with isolated
+accounts and Roundcube 1.6.19.
 
 ## Features
 
@@ -66,7 +65,8 @@ Other skins must implement the native plugin/settings UI and have not all been
 tested. Roundcube 1.7 requires its normal `public_html` document root and asset
 router. This plugin adds no public PHP endpoint or extra rewrite requirement.
 
-The Stalwart contract was checked against **0.16.25**, using the current `x:*`
+The Stalwart contract was checked against **0.16.25** and integration-tested on
+**0.16.26**, using the current `x:*`
 JMAP management API, not legacy REST endpoints. Password/TOTP management targets
 Stalwart's internal directory, not credentials managed by external directories.
 The optional embedded login targets **0.16.26** and its `/api/auth` OAuth flow.
@@ -76,7 +76,7 @@ The optional embedded login targets **0.16.26** and its `/api/auth` OAuth flow.
 From the **Roundcube root**, where its `composer.json` is located:
 
 ```sh
-composer require "evopixel/stalwart:1.0.6"
+composer require "evopixel/stalwart:1.1.0"
 ```
 
 The package and its dependencies are available on Packagist. No extra
@@ -113,6 +113,7 @@ Roundcube installation or a separate plugin `vendor` directory.
 | Option | Default | Purpose |
 | --- | --- | --- |
 | `stalwart_enabled` | `false` | Master switch |
+| `stalwart_hosts` | `null` | Per-server settings keyed by exact IMAP address; required for multiple servers |
 | `stalwart_api_url` | `''` | Trusted HTTPS JMAP URL for the mailbox's server |
 | `stalwart_twofactor_enabled` | `false` | TOTP setup/removal |
 | `stalwart_app_passwords_enabled` | `false` | Application passwords |
@@ -138,6 +139,48 @@ Disabled features have no settings entry or registered feature actions. The
 master switch and URL are required for all features. Disabling the TOTP management
 page does not bypass OTP verification on password changes.
 
+### Multiple mail servers
+
+Keep IMAP and SMTP servers configured in Roundcube. Use the exact `imap_host`
+addresses as keys in `stalwart_hosts`, in the local Stalwart configuration:
+
+```php
+$config['stalwart_enabled'] = true;
+$config['stalwart_hosts'] = [
+    'ssl://mail.example.org:993' => [
+        'api_url' => 'https://mail.example.org/jmap',
+        'twofactor_enabled' => true,
+        'app_passwords_enabled' => true,
+        'password_driver' => 'stalwart',
+    ],
+    'ssl://mail.example.net:993' => [
+        'api_url' => 'https://mail.example.net/jmap',
+        'twofactor_enabled' => true,
+        'login_enabled' => true,
+        'login_client_id' => 'YOUR_REGISTERED_CLIENT_ID',
+        'login_redirect_uri' => 'https://webmail.example.org/index.php/login/oauth',
+    ],
+];
+```
+
+Unlisted servers do not use the plugin. API endpoints and login client credentials
+must be supplied in each entry; they never fall back to another server's values.
+Feature flags inherit the global defaults unless overridden. A per-server
+`password_driver` takes priority over Password's shared configuration.
+With `stalwart_hosts = null`, the existing global settings work for one IMAP server;
+multiple servers require an explicit map.
+
+Login uses the selected configured server. Account settings use the authenticated
+IMAP session, including its port and TLS mode, regardless of URL parameters.
+Settings forms and pending two-factor challenges are bound to their server and
+account. Configuration changes invalidate the old binding; sign out and back in
+after changing an endpoint or client registration.
+
+Roundcube controls redirect OAuth and the server selector. This map does not add
+OAuth providers to Roundcube or change its login policy. Leave `login_enabled`
+disabled on servers using redirect OAuth; their two-factor prompt belongs to the
+provider. The plugin's settings remain available after either login method.
+
 ### Embedded login
 
 This optional mode keeps sign-in inside the active Roundcube skin. Accounts
@@ -147,7 +190,7 @@ Stalwart verifies the code; the plugin never reads the account's TOTP seed.
 
 Register a dedicated OAuth client on Stalwart with the exact HTTPS callback URI
 configured below. Allow the `openid`, `offline_access` and
-`urn:ietf:params:oauth:scope:mail` scopes. Configure one fixed IMAP server and SMTP
+`urn:ietf:params:oauth:scope:mail` scopes. Configure each IMAP server and its SMTP transport
 on the same Stalwart deployment, with TLS for remote connections and XOAUTH2
 support. The JMAP URL must end in `/jmap`; its HTTPS origin must match Stalwart's
 configured issuer. Embedded sign-in does not redirect the browser to the callback,
@@ -162,7 +205,7 @@ $config['stalwart_login_redirect_uri'] = 'https://webmail.example.com/index.php/
 // Set stalwart_login_client_secret if the registered client requires a secret.
 ```
 
-Use this mode without Roundcube's `oauth_provider` redirect configuration. For
+Use this mode only on servers without active Roundcube redirect OAuth. For
 external-provider login instead, leave `stalwart_login_enabled` disabled and use
 Roundcube's native OAuth settings. The settings pages work with either mode.
 External-provider login forms follow Roundcube's configuration and rendering;
@@ -193,7 +236,8 @@ $config['password_driver'] = 'stalwart';
 Keep the bundled `password` plugin enabled when using its local configuration or
 first-login forced-password policy. If the driver is already selected in the
 main or Stalwart configuration, this plugin can load Password automatically.
-Password's local configuration still has priority and is checked again after loading.
+For single-server settings, Password's local configuration has priority and is
+checked again after loading. Explicit per-server driver settings take precedence.
 Selecting another provider, such as Mailcow, leaves that provider's page unchanged.
 The TOTP entry follows Password regardless of the selected provider.
 
@@ -243,7 +287,7 @@ password or OAuth first. Account-password changes preserve app-password/OAuth
 session credentials; primary-password sessions switch to the new password.
 
 QR generation is local. The pending secret is encrypted in the existing session,
-bound to the user and setup token, and expires after ten minutes or five failed
+bound to the server, user and setup token, and expires after ten minutes or five failed
 attempts. The browser cannot supply a replacement seed. Recovery-code management
 is not included; use the server's normal recovery process.
 
@@ -322,8 +366,14 @@ the tests discover the root automatically.
 The API suite uses mock responses, synthetic keys and TOTP vectors. Lifecycle
 checks use each version's real `rcube_plugin` class with test adapters. They check
 feature gates, action registration, config precedence, menu order and resource
-names. Browser fixtures use isolated API/IMAP services and SQLite. None use live
-accounts. Live Stalwart validation remains necessary for production claims.
+names. Browser fixtures use isolated API/IMAP services and SQLite.
+
+Live Stalwart 0.16.26 checks cover password changes, TOTP enrollment/removal,
+application passwords, authorized alias changes, public keys, embedded login, OAuth with PKCE, token refresh,
+IMAP and SMTP. They use temporary accounts with stock Elastic and compatible
+custom skins. Enterprise masked-email operations still require validation on a
+licensed deployment; the Community rejection is covered. No production accounts
+or credentials are used.
 
 Follow existing four-space PHP formatting and native hooks, actions, HTML helpers,
 translations and the `plugin` template. Keep feature-specific helpers separate

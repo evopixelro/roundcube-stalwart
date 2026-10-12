@@ -63,7 +63,9 @@ class login_api
     public $calls = 0;
     public $mfa = true;
     public $refresh_error = false;
-    public function binding() { return 'binding'; }
+    public $server = 'binding';
+    public function binding() { return $this->server; }
+    public function host() { return 'ssl://mail.example.test:993'; }
     public function options() { return ['provider' => null, 'debug' => false]; }
     public function authorize($username, $password, $verifier, $code = '') {
         $this->calls++;
@@ -211,4 +213,19 @@ list($login, $api, $rc) = login_fixture();
 $_POST['_pass'] = 'wrong-password';
 login_start($login);
 login_check(!empty(login_auth($login)['abort']) && !isset($_SESSION['stalwart_login']), 'Wrong password grants neither a challenge nor mailbox access');
+list($login, $api, $rc) = login_fixture(false);
+login_start($login);
+login_auth($login);
+$login->login_after([]);
+$api->server = 'another-server';
+try { $rc->oauth->storage_init(['driver' => 'imap']); throw new RuntimeException('Mismatched token reached transport'); }
+catch (login_redirect $e) { login_check(!isset($_SESSION['oauth_token']), 'Server change destroys token session before transport'); }
+
+list($login, $api, $rc) = login_fixture();
+$flow = login_challenge($login);
+$api->server = 'another-server';
+$_POST = ['_stalwart_flow' => $flow, '_stalwart_code' => '123456'];
+login_start($login);
+login_check($api->calls === 1 && !empty(login_auth($login)['abort']), 'Changing server during OTP cannot forward pending credentials');
+
 echo $checks . " native Stalwart login checks passed.\n";

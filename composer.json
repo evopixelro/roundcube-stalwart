@@ -33,6 +33,7 @@
         "test": [
             "@php tests/client.php",
             "@php tests/auth.php",
+            "@php tests/config.php",
             "@php tests/login.php",
             "@php tests/lifecycle.php",
             "@php tests/localization.php"

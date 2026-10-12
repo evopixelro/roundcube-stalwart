@@ -27,8 +27,19 @@ class stalwart extends rcube_plugin
         $this->rc = rcmail::get_instance();
         $this->load_config();
         $this->add_texts('localization/');
+        rcube_stalwart_config::apply($this->rc);
 
-        if ($this->rc->config->get('stalwart_enabled') && $this->rc->config->get('stalwart_login_enabled')) {
+        if (!empty($_SESSION['oauth_token']['stalwart_login'])
+            && (!$this->rc->config->get('stalwart_enabled') || !$this->rc->config->get('stalwart_login_enabled')
+                || $this->rc->oauth && $this->rc->oauth->is_enabled())
+        ) {
+            $this->rc->kill_session();
+            $this->rc->output->redirect(['_task' => 'login']);
+        }
+
+        if ($this->rc->config->get('stalwart_enabled') && $this->rc->config->get('stalwart_login_enabled')
+            && (!$this->rc->oauth || !$this->rc->oauth->is_enabled())
+        ) {
             require_once __DIR__ . '/stalwart_auth.php';
             require_once __DIR__ . '/stalwart_oauth.php';
             require_once __DIR__ . '/stalwart_login.php';
@@ -44,12 +55,17 @@ class stalwart extends rcube_plugin
 
     public function startup($args)
     {
+        if ($this->rc->config->get('stalwart_hosts') !== null && !rcube_stalwart_client::enabled($this->rc->config)) {
+            return $args;
+        }
         if ($this->rc->config->get('password_driver') === 'stalwart') {
             // Reuse the bundled plugin's settings, translations and first-login policy.
             // Its source, drivers and templates remain unchanged.
             $this->require_plugin('password');
         }
-        // Loading Password can override the driver through its local configuration.
+        // A mapped server keeps its own driver after Password loads its defaults.
+        rcube_stalwart_config::password_driver($this->rc);
+        // Recheck the selected driver after loading the local configuration.
         if ($this->rc->config->get('password_driver') === 'stalwart') {
             require_once __DIR__ . '/stalwart_password.php';
             $this->pages['password'] = $page = new rcube_stalwart_password_page($this);
@@ -235,6 +251,7 @@ class stalwart extends rcube_plugin
         else {
             $content = html::p('hint', rcube::Q($this->gettext($this->enabled ? 'enabled' : 'disabled')));
             $hidden = new html_hiddenfield();
+            $hidden->add(['name' => '_stalwart_server', 'value' => rcube_stalwart_config::binding($this->rc)]);
             $hidden->add(['name' => '_operation', 'value' => $this->enabled ? 'disable' : 'enable']);
 
             if (!$this->enabled) {
@@ -243,6 +260,7 @@ class stalwart extends rcube_plugin
                         'secret' => $this->rc->encrypt(rcube_stalwart_totp::secret()),
                         'token' => bin2hex(random_bytes(16)),
                         'user' => $this->rc->user->ID,
+                        'server' => rcube_stalwart_config::binding($this->rc),
                         'expires' => time() + 600,
                         'attempts' => 0,
                     ];
@@ -295,6 +313,7 @@ class stalwart extends rcube_plugin
     private function valid_setup(array $pending)
     {
         return isset($pending['secret'], $pending['token'], $pending['user'], $pending['expires'], $pending['attempts'])
+            && ($pending['server'] ?? '') === rcube_stalwart_config::binding($this->rc)
             && $pending['user'] === $this->rc->user->ID && $pending['expires'] > time() && $pending['attempts'] < 5;
     }
 

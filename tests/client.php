@@ -8,6 +8,7 @@ if (!is_file($roundcube_root . '/vendor/autoload.php')
     throw new RuntimeException('Set ROUNDCUBE_ROOT to a development Roundcube installation with Composer dependencies.');
 }
 require $roundcube_root . '/vendor/autoload.php';
+require $roundcube_root . '/program/lib/Roundcube/rcube_utils.php';
 require dirname(__DIR__) . '/stalwart_client.php';
 require dirname(__DIR__) . '/stalwart_totp.php';
 
@@ -59,6 +60,12 @@ foreach ([null => false, '********' => true] as $masked => $enabled) {
     check(json_decode((string) $request->getBody(), true)['methodCalls'][0][1] === ['ids' => ['singleton']], 'Only own singleton requested');
     check($history[0]['options']['verify'] === true && $history[0]['options']['allow_redirects'] === false, 'TLS and redirect policy');
 }
+
+$api = client([response($get, ['list' => [['id' => 'singleton', 'otpAuth' => new stdClass()]]])], $history);
+check($api->status() === false, 'Stalwart omits otpUrl when two-factor authentication is disabled');
+
+$api = client([response('x:AppPassword/get', ['list' => [['id' => 'app', 'description' => 'Mail client']], 'notFound' => ['primary-password']])], $history);
+check(array_column($api->app_passwords(), 'id') === ['app'], 'Credential enumeration excludes the primary password without rejecting app passwords');
 
 $api = client([response($set, ['updated' => ['singleton' => null]])], $history, ['username' => 'user@example.test', 'password' => 'dummy-app-password']);
 $api->update('dummy-primary-password', '123456', ['secret' => 'dummy-new-password']);
@@ -139,18 +146,21 @@ class rcmail_oauth
 $rc = new class {
     public $config;
     public $oauth;
+    public $user;
     public function __construct() {
+        $this->user = (object) ['ID' => 1];
         $this->oauth = new rcmail_oauth();
         $this->config = new class {
             public function get($key, $default = null) {
-                return ['stalwart_enabled' => true, 'stalwart_api_url' => 'https://mail.example.test/jmap'][$key] ?? $default;
+                return ['stalwart_enabled' => true, 'stalwart_api_url' => 'https://mail.example.test/jmap', 'imap_host' => 'mail.example.test', 'stalwart_selected_host' => 'mail.example.test'][$key] ?? $default;
             }
         };
     }
     public function decrypt($value) { return $value; }
     public function get_user_name() { return 'user@example.test'; }
 };
-$_SESSION = ['oauth_token' => ['access_token' => 'dummy', 'expires' => time() + 60]];
+$_SESSION = ['storage_host' => 'mail.example.test', 'stalwart_server' => rcube_stalwart_config::binding($rc),
+    'oauth_token' => ['access_token' => 'dummy', 'expires' => time() + 60]];
 check(rcube_stalwart_client::from_session($rc) instanceof rcube_stalwart_client, 'Fresh OAuth token accepted');
 check(rcmail_oauth::$calls === 0, 'Unexpired OAuth token must not depend on refresh return value');
 $_SESSION['oauth_token']['expires'] = time() - 60;

@@ -71,12 +71,18 @@ $patch = json_decode((string) $history[3]['request']->getBody(), true)['methodCa
 check(array_keys($patch) === ['my-account'] && array_keys($patch['my-account']) === ['aliases'], 'Only own aliases updated');
 check(array_slice($patch['my-account']['aliases'], 0, 2) === $account['aliases'], 'Preserves existing metadata and other domains');
 check($patch['my-account']['aliases'][2] === ['name' => 'news', 'domainId' => 'domain1', 'description' => 'News', 'enabled' => true], 'New alias fixed to primary domain');
+check(strpos((string) $history[3]['request']->getBody(), '"aliases":{') !== false, 'Stalwart alias lists use keyed JSON objects');
 foreach (['disable', 'enable', 'delete'] as $op) {
     $api = client(array_merge(alias_responses($account), [response('x:Account/set', ['updated' => ['my-account' => null]])]), $history);
     $api->save_alias($op, rcube_stalwart_client::alias_key($account['aliases'][0]), '', '', $version);
     $aliases = json_decode((string) $history[3]['request']->getBody(), true)['methodCalls'][0][1]['update']['my-account']['aliases'];
     check($op === 'delete' ? $aliases === [$account['aliases'][1]] : $aliases[0]['enabled'] === ($op === 'enable'), 'Alias ' . $op);
 }
+$single = $account;
+$single['aliases'] = [$account['aliases'][0]];
+$api = client(array_merge(alias_responses($single), [response('x:Account/set', ['updated' => ['my-account' => null]])]), $history);
+$api->save_alias('delete', rcube_stalwart_client::alias_key($single['aliases'][0]), '', '', hash('sha256', json_encode([$single['id'], $single['aliases']])));
+check(strpos((string) $history[3]['request']->getBody(), '"aliases":{}') !== false, 'Removing the last alias sends an empty object');
 foreach (['USER' => 'aliasexists', 'CONTACT' => 'aliasexists', 'bad@outside.test' => 'invalidalias', '<script>' => 'invalidalias'] as $name => $error) {
     $api = client(alias_responses($account), $history);
     fails(function () use ($api, $name, $version) { $api->save_alias('create', '', $name, '', $version); }, $error);
