@@ -51,6 +51,7 @@ class rcube_stalwart_password_page extends rcube_stalwart_page
     public function save()
     {
         $this->rc->request_security_check();
+        $changed = false;
         try {
             if (!$this->available() || $this->rc->config->get('password_disabled')) {
                 throw new RuntimeException('passwordunavailable');
@@ -70,6 +71,7 @@ class rcube_stalwart_password_page extends rcube_stalwart_page
             $client = rcube_stalwart_client::from_session($this->rc);
             $primary_login = $client->uses_account_password($current);
             $client->update($current, $code, ['secret' => $new]);
+            $changed = true;
 
             // Notify integrations of the real password change. Never replace an app
             // credential or OAuth session with the primary account password.
@@ -85,8 +87,36 @@ class rcube_stalwart_password_page extends rcube_stalwart_page
                     $this->rc->get_user_name(), $this->rc->user->ID, rcube_utils::remote_ip()));
             }
             $this->rc->session->remove('password_expires');
+
+            if (!empty($_SESSION['oauth_token'])) {
+                if (empty($_SESSION['oauth_token']['stalwart_login'])
+                    || !($this->rc->oauth instanceof rcube_stalwart_oauth)
+                ) {
+                    // Redirect OAuth must repeat its provider's authorization flow.
+                    throw new RuntimeException('loginexpired');
+                }
+                $this->rc->oauth->reauthorize($new, $code);
+            }
         }
         catch (RuntimeException $e) {
+            if ($changed) {
+                // The password was saved, even if obtaining new authorization failed.
+                // Clear remembered credentials before discarding the old session.
+                $this->rc->plugins->exec_hook('logout_after', [
+                    'user' => $this->rc->get_user_name(),
+                    'host' => $_SESSION['storage_host'] ?? '',
+                    'lang' => $this->rc->user->language,
+                ]);
+                $this->rc->kill_session();
+                $_SESSION['stalwart_password_changed'] = true;
+                $url = ['_task' => 'login', '_err' => 'session'];
+                if ($this->rc->output->ajax_call || $this->rc->output->get_env('framed')) {
+                    $this->rc->output->command('session_error', $this->rc->url($url));
+                    $this->rc->output->send('iframe');
+                }
+                $this->rc->output->redirect($url);
+                return;
+            }
             $this->redirect($e->getMessage(), 'error');
             return;
         }

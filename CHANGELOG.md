@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.1.2 - 2026-10-19
+
+- Renew embedded OAuth credentials after password changes, preserving the mailbox session and Remember me.
+- Clear revoked sessions when fresh authorization fails or requires a provider redirect.
+- Apply Roundcube username domain completion before embedded Stalwart login, including the TOTP step.
+- Preserve the Remember me choice through embedded two-factor login.
+- Support remembered embedded login on standard Roundcube with the unchanged Persistent Login plugin.
+- Encrypt saved refresh credentials, bind them to their Stalwart server, and rotate remembered identifiers.
+- Coordinate persistence ownership with compatible OAuth integrations to avoid duplicate handling.
+
 ## 1.1.0 - 2026-10-12
 
 - Configure account settings and embedded login separately for each IMAP server.

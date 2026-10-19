@@ -18,6 +18,18 @@ class rcube_stalwart_oauth extends rcmail_oauth
         }
     }
 
+    /**
+     * Declare ownership of persistence for the embedded Stalwart login.
+     */
+    public function persistent_login_context()
+    {
+        return [
+            'managed' => true,
+            'host' => $this->client->host(),
+            'binding' => hash('sha256', 'stalwart:' . $this->client->binding()),
+        ];
+    }
+
     public function prepare(array $token, $username)
     {
         $token['expires'] = time() + $token['expires_in'] - min(60, (int) ($token['expires_in'] / 2));
@@ -31,6 +43,32 @@ class rcube_stalwart_oauth extends rcmail_oauth
         $token['identity'] = $username;
         $token['auth_type'] = 'XOAUTH2';
         return $token;
+    }
+
+    /**
+     * Replace tokens revoked by an account-password change, keeping this session.
+     */
+    public function reauthorize($password, $code = '')
+    {
+        $token = $_SESSION['oauth_token'] ?? [];
+        if (empty($token['stalwart_login']) || empty($token['identity'])
+            || ($token['stalwart_server'] ?? '') !== $this->client->binding()
+        ) {
+            throw new RuntimeException('loginexpired');
+        }
+
+        $verifier = rtrim(strtr(base64_encode(random_bytes(32)), '+/', '-_'), '=');
+        $authorization = $this->client->authorize($token['identity'], $password, $verifier, $code);
+        if (!$authorization || $authorization['username'] !== $token['identity']) {
+            throw new RuntimeException('loginexpired');
+        }
+
+        // Never reuse a revoked refresh token or substitute a password for OAuth.
+        $updated = $this->prepare($authorization['token'], $authorization['username']);
+        $_SESSION['oauth_token'] = $updated;
+        $_SESSION['password'] = $this->rcmail->encrypt('Bearer ' . $authorization['token']['access_token']);
+        $this->rcmail->session->regenerate_id(true);
+        $this->rcmail->plugins->exec_hook('oauth_refresh_token', $updated);
     }
 
     public function refresh_access_token(array $token)

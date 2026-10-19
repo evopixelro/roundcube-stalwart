@@ -15,6 +15,7 @@ accounts and Roundcube 1.6.19.
 - Public OpenPGP/S/MIME keys: import, rename and delete.
 - Masked email: create, enable/disable and delete on Stalwart Enterprise.
 - Optional native login with a second Stalwart TOTP step before mailbox access.
+- Remember me for native Stalwart login with the Persistent Login plugin.
 
 Features are independently configurable and disabled by default. The plugin uses
 native settings pages and multilingual catalogs with native English fallback.
@@ -76,7 +77,7 @@ The optional embedded login targets **0.16.26** and its `/api/auth` OAuth flow.
 From the **Roundcube root**, where its `composer.json` is located:
 
 ```sh
-composer require "evopixel/stalwart:1.1.0"
+composer require "evopixel/stalwart:1.1.2"
 ```
 
 The package and its dependencies are available on Packagist. No extra
@@ -211,6 +212,12 @@ Roundcube's native OAuth settings. The settings pages work with either mode.
 External-provider login forms follow Roundcube's configuration and rendering;
 this plugin does not change other providers' login forms.
 
+Embedded sign-in respects Roundcube's `username_domain` and
+`username_domain_forced` before sending credentials to Stalwart. A domain map is
+matched against the selected IMAP hostname, without its scheme or port. Full email
+addresses keep their domain unless forcing is enabled. Configure these options in
+Roundcube's main configuration; the plugin does not try other domains on failure.
+
 Pending challenges expire after five minutes or five attempts. The password is
 encrypted in the server-side session while awaiting the code, then discarded on
 completion, cancellation or failure. Expired pending data is removed on the next
@@ -223,6 +230,25 @@ API and lifecycle checks use mocked responses. The browser fixture uses the real
 Roundcube form and plugin with a simulated OAuth/IMAP server. Verify registration,
 IMAP, SMTP, token renewal and logout against your Stalwart deployment before
 enabling this mode in production.
+
+### Remember me
+
+Embedded Stalwart login supports Remember me on standard Roundcube. Enable
+[Persistent Login](https://github.com/texxasrulez/persistent_login) (`persistent_login`)
+alongside `stalwart`; either order is supported and no plugin patches are needed.
+Its checkbox and translations are reused, and the choice is preserved through TOTP.
+A refresh token is required to remember a completed login.
+
+The browser stores a random identifier. Refresh credentials are encrypted in the
+existing Roundcube database cache and bound to the selected Stalwart server. Restoring
+a session obtains fresh authorization and rotates the identifier. Logout removes the
+remembered login; expired or revoked credentials require signing in again.
+
+Set `ifpl_login_expire` in the Persistent Login configuration (seconds; default three
+days, maximum 30 days, zero disables Stalwart persistence). Token renewal does not
+extend this expiry. Clearing the database cache removes remembered logins. No extra
+table or Roundcube modification is required. Without `persistent_login`, ordinary
+Stalwart login and account settings continue to work.
 
 ### Password provider
 
@@ -283,8 +309,16 @@ page. A UI restriction does not restrict what that credential can do elsewhere.
 
 Enabling TOTP from a main-password Webmail session is rejected before any write,
 because subsequent IMAP authentication would stop working. Sign in with an app
-password or OAuth first. Account-password changes preserve app-password/OAuth
-session credentials; primary-password sessions switch to the new password.
+password or OAuth first. Primary-password sessions switch to the new password;
+application-password sessions keep their own credential. Embedded login obtains
+new OAuth tokens after a password change, using the new password and the submitted
+TOTP code when required. The mailbox session and Remember me remain active; the
+new password is not retained in the OAuth session.
+
+If new authorization fails or needs another verification step, the password change
+remains effective and the user is asked to sign in again, with remembered credentials cleared.
+Native redirect OAuth must repeat the provider's authorization flow. Tokens revoked
+by password changes elsewhere cannot be restored without fresh authorization.
 
 QR generation is local. The pending secret is encrypted in the existing session,
 bound to the server, user and setup token, and expires after ten minutes or five failed
@@ -332,8 +366,8 @@ Before uninstalling, restore a working password driver if needed, remove
 `stalwart` from the enabled list, then run
 `composer remove evopixel/stalwart`. Back up configuration you want to keep.
 Uninstalling does not disable server 2FA, revoke passwords or remove server data.
-No Roundcube database migration is needed; short-lived secrets use existing
-encrypted session storage.
+No Roundcube database migration is needed. Temporary secrets use encrypted session
+storage; remembered logins use encrypted records in the existing database cache.
 
 ## Troubleshooting
 
@@ -361,12 +395,17 @@ node --check stalwart.js
 
 On PowerShell, set `$env:ROUNDCUBE_ROOT = 'C:/path/to/development/roundcube'` before
 running `composer test`. When installed under Roundcube's `plugins` directory,
-the tests discover the root automatically.
+the tests discover the root automatically. Persistence checks require PDO SQLite
+and an unchanged Persistent Login plugin in `plugins/persistent_login`. If it is
+installed elsewhere, set `PERSISTENT_LOGIN_ROOT` to that plugin directory.
 
 The API suite uses mock responses, synthetic keys and TOTP vectors. Lifecycle
 checks use each version's real `rcube_plugin` class with test adapters. They check
 feature gates, action registration, config precedence, menu order and resource
 names. Browser fixtures use isolated API/IMAP services and SQLite.
+Password-session checks simulate fresh authorization after a successful password
+change, including TOTP, Remember me, identity checks and failure recovery.
+This session-renewal path still needs an end-to-end check on a live Stalwart account.
 
 Live Stalwart 0.16.26 checks cover password changes, TOTP enrollment/removal,
 application passwords, authorized alias changes, public keys, embedded login, OAuth with PKCE, token refresh,

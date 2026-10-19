@@ -2,14 +2,16 @@
 
 // Configure config.inc.php in this directory; Composer normally creates it for you.
 // Local plugin settings override Roundcube's main configuration. See README.md.
-// Nothing is enabled by installing the plugin alone.
+// Master switch: enable it before using login or account settings.
 $config['stalwart_enabled'] = false;
+// Single-server JMAP endpoint, for example https://mail.example.org/jmap. HTTPS is required.
 $config['stalwart_api_url'] = '';
 
 // Settings per IMAP server, using exact addresses from Roundcube's imap_host.
 // Unlisted servers do not use this plugin. Null keeps single-server settings.
 // Multiple IMAP servers require a map; API URLs and client credentials are not inherited.
 // Feature flags inherit the defaults below unless overridden in an entry.
+// Entry keys omit the stalwart_ prefix used by the single-server options.
 // $config['stalwart_hosts'] = [
 //     'ssl://mail.example.org:993' => [
 //         'api_url' => 'https://mail.example.org/jmap',
@@ -19,19 +21,29 @@ $config['stalwart_api_url'] = '';
 // ];
 $config['stalwart_hosts'] = null;
 
-// Optional native login with a second Stalwart TOTP step. Requires Stalwart 0.16.26.
+// Optional sign-in inside Roundcube, with a TOTP step when enabled on the account.
+// Requires Stalwart 0.16.26. Account settings also work without this login mode.
 // Register a dedicated OAuth client and its exact HTTPS redirect URI on Stalwart.
 // Use this mode only on servers without active Roundcube redirect OAuth.
+// Short usernames follow username_domain and username_domain_forced in Roundcube's main configuration.
 $config['stalwart_login_enabled'] = false;
 $config['stalwart_login_client_id'] = '';
+// Leave the secret empty only if the registered client does not require one.
 $config['stalwart_login_client_secret'] = '';
 $config['stalwart_login_redirect_uri'] = '';
 
+// Remember me: also enable the persistent_login plugin; no separate switch is needed here.
+// Set ifpl_login_expire in its configuration: seconds, default 3 days, maximum 30 days.
+// A value of 0 disables remembered Stalwart login. The choice is preserved through TOTP.
+
 // Independently enable each native settings page.
+// TOTP setup/removal; this switch does not disable verification during login.
 $config['stalwart_twofactor_enabled'] = false;
+// Create and revoke passwords for mail clients.
 $config['stalwart_app_passwords_enabled'] = false;
 // Requires existing account-administration permissions. See README.md.
 $config['stalwart_aliases_enabled'] = false;
+// Manage public OpenPGP/S/MIME keys for server-side email encryption.
 $config['stalwart_public_keys_enabled'] = false;
 // Requires Stalwart Enterprise and the user's MaskedEmail permissions.
 $config['stalwart_masked_email_enabled'] = false;

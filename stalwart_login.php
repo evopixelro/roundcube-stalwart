@@ -31,6 +31,9 @@ class rcube_stalwart_login
         catch (RuntimeException $e) {
             $this->error = 'loginconfigurationerror';
         }
+
+        require_once __DIR__ . '/stalwart_persistent_login.php';
+        rcube_stalwart_persistent_login::init($this->rc, $this->client);
     }
 
     public function startup($args)
@@ -83,6 +86,7 @@ class rcube_stalwart_login
             else {
                 $this->clear();
                 $username = trim((string) rcube_utils::get_input_string('_user', rcube_utils::INPUT_POST));
+                $username = $this->username($username);
                 $password = rcube_utils::get_input_string('_pass', rcube_utils::INPUT_POST, true,
                     $this->rc->config->get('password_charset', 'UTF-8'));
                 $verifier = rtrim(strtr(base64_encode(random_bytes(32)), '+/', '-_'), '=');
@@ -98,6 +102,7 @@ class rcube_stalwart_login
                         'flow' => bin2hex(random_bytes(32)), 'binding' => $this->client->binding(),
                         'expires' => time() + 300, 'attempts' => 5, 'host' => $this->client->host(),
                         'url' => rcube_utils::get_input_string('_url', rcube_utils::INPUT_POST),
+                        'remember' => rcube_utils::get_input_string('_ifpl', rcube_utils::INPUT_POST) === '1',
                     ];
                     unset($password, $_POST['_pass']);
                     $this->rc->output->redirect(['_task' => 'login', '_action' => 'plugin.stalwart-login', '_host' => $this->client->host()]);
@@ -189,6 +194,9 @@ class rcube_stalwart_login
         $args['hidden']['stalwart'] = (new html_hiddenfield(['name' => '_stalwart_flow', 'value' => $pending['flow']]))->show();
         $args['hidden']['host'] = (new html_hiddenfield(['name' => '_host', 'value' => $pending['host']]))->show();
         $args['hidden']['url'] = (new html_hiddenfield(['name' => '_url', 'value' => $pending['url']]))->show();
+        if (!empty($pending['remember'])) {
+            $args['hidden']['remember'] = (new html_hiddenfield(['name' => '_ifpl', 'value' => '1']))->show();
+        }
         $args['hidden']['help'] = html::p(['class' => 'stalwart-login-help'], rcube::Q($this->plugin->gettext('loginotphelp')));
         $args['buttons'] = [
             'submit' => ['outterclass' => 'formbuttons', 'content' => html::tag('button', [
@@ -200,6 +208,31 @@ class rcube_stalwart_login
             ], rcube::Q($this->rc->gettext('back')))],
         ];
         return $args;
+    }
+
+    /**
+     * Apply Roundcube's domain rules before the embedded authorization request.
+     */
+    private function username($username)
+    {
+        $domain = $this->rc->config->get('username_domain');
+        if ($username === '' || empty($domain)) {
+            return $username;
+        }
+        list($host) = rcube_utils::parse_host_uri(rcube_utils::parse_host($this->client->host()), 143, 993);
+        if (is_array($domain)) {
+            $domain = $domain[$host] ?? '';
+        }
+        if ($domain = rcube_utils::parse_host((string) $domain, $host)) {
+            $pos = strpos($username, '@');
+            if ($pos !== false && $this->rc->config->get('username_domain_forced')) {
+                $username = substr($username, 0, $pos) . '@' . $domain;
+            }
+            elseif ($pos === false) {
+                $username .= '@' . $domain;
+            }
+        }
+        return $username;
     }
 
     private function pending()

@@ -35,6 +35,9 @@
             "@php tests/auth.php",
             "@php tests/config.php",
             "@php tests/login.php",
+            "@php tests/password_session.php",
+            "@php tests/persistence.php",
+            "@php tests/persistence_hooks.php",
             "@php tests/lifecycle.php",
             "@php tests/localization.php"
         ]

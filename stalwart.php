@@ -27,6 +27,9 @@ class stalwart extends rcube_plugin
         $this->rc = rcmail::get_instance();
         $this->load_config();
         $this->add_texts('localization/');
+        if (!empty($_SESSION['stalwart_password_changed']) && empty($this->rc->user->ID)) {
+            $this->add_hook('unauthenticated', [$this, 'password_changed']);
+        }
         rcube_stalwart_config::apply($this->rc);
 
         if (!empty($_SESSION['oauth_token']['stalwart_login'])
@@ -51,6 +54,13 @@ class stalwart extends rcube_plugin
 
         // Wait for other plugins to load their configuration, regardless of plugin order.
         $this->add_hook('startup', [$this, 'startup']);
+    }
+
+    public function password_changed($args)
+    {
+        $this->rc->session->remove('stalwart_password_changed');
+        $this->rc->output->show_message($this->gettext('passwordsaved') . ' ' . $this->gettext('loginexpired'), 'notice');
+        return $args;
     }
 
     public function startup($args)
