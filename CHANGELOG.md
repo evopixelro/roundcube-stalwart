@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.1.4 - 2026-11-25
+
+- Update the password-session test adapter for the OAuth cache and HTTP client used by Roundcube 1.7.7.
+- Verify compatibility with Roundcube 1.6.22 and 1.7.7 using the offline test suites.
+
 ## 1.1.2 - 2026-10-19
 
 - Renew embedded OAuth credentials after password changes, preserving the mailbox session and Remember me.

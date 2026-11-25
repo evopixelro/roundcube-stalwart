@@ -3,9 +3,6 @@
 Manage Stalwart account security and email addresses from Roundcube Settings.
 An independent community plugin by **EvoPixel**, licensed under **GPL-3.0-or-later**.
 
-Version 1.1.0 was integration-tested against Stalwart 0.16.26 with isolated
-accounts and Roundcube 1.6.19.
-
 ## Features
 
 - Account-password changes using the existing Password plugin's policies.
@@ -30,30 +27,8 @@ and Talossan currently use English.
 
 ## Compatibility
 
-Supported Roundcube series: **1.6.x, starting at 1.6.0, and 1.7.x**.
-Support targets both series, not just the individual releases listed below. The
-plugin uses Roundcube's public plugin API, with no checks that restrict it to
-specific patch releases. New 1.6.x and 1.7.x patches are expected to work while
-those APIs and the declared dependencies remain compatible; each future release
-still needs regression testing.
-
-**Roundcube 1.8 and later:** the plugin may work if the same APIs remain available,
-but these versions are not yet tested or included in the supported range. Support
-will be reassessed when they are available. Versions before 1.6.0 are unsupported.
-
-### Tested releases
-
-The following are test coverage examples, not an exhaustive compatibility list.
-
-| Roundcube | PHP used | Checks |
-| --- | --- | --- |
-| 1.6.0 | 7.4 | Offline API/policy suite and native plugin lifecycle |
-| 1.6.19 | 8.2 | Offline suites, Composer installation, browser fixtures |
-| 1.7.0 | 8.2 | Offline API/policy suite and native plugin lifecycle |
-| 1.7.4 | 8.2 | Offline suites, Composer installation, browser fixtures |
-
-Older patches are compatibility fixtures, not deployment recommendations. Use a
-current security release from [Roundcube downloads](https://roundcube.net/download/).
+The plugin supports **Roundcube 1.6.x and 1.7.x**. Use the latest security
+release for your series from [Roundcube downloads](https://roundcube.net/download/).
 
 ### Runtime and integration requirements
 
@@ -77,7 +52,7 @@ The optional embedded login targets **0.16.26** and its `/api/auth` OAuth flow.
 From the **Roundcube root**, where its `composer.json` is located:
 
 ```sh
-composer require "evopixel/stalwart:1.1.2"
+composer require evopixel/stalwart
 ```
 
 The package and its dependencies are available on Packagist. No extra
@@ -356,9 +331,9 @@ Key and masked-address lists show 20 entries per page.
 
 ## Update, migrate or uninstall
 
-Back up local configuration and review [CHANGELOG.md](CHANGELOG.md). Select a new
-tagged version with `composer require evopixel/stalwart:<version>`, or
-use `composer update evopixel/stalwart` when following `dev-main`.
+Back up local configuration and review [CHANGELOG.md](CHANGELOG.md).
+Run `composer update evopixel/stalwart` to install the latest release
+allowed by your project's dependency constraints.
 Retain your application's `composer.lock` and test before deploying. The installer
 preserves local configuration; review new options in `config.inc.php.dist`.
 

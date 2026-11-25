@@ -47,6 +47,8 @@ class rcmail extends rcube
     public $events = [];
     public static function get_instance() { return self::$instance; }
     public function oauth_config() { return []; }
+    public function get_cache_shared($name) { return null; }
+    public function get_http_client($options) { return new GuzzleHttp\Client($options); }
     public function get_user_name() { return 'user@example.test'; }
     public function request_security_check() { $this->events[] = 'csrf'; }
     public function get_storage() { return $this->storage; }
